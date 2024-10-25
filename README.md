@@ -1,5 +1,5 @@
 # BDI-GB-ZOO
-# 🚀 Project: Proyecto Vase de Datos I
+# 🚀 Project: Proyecto Base de Datos I
 
 Developer: Anderson 
 Src Directory: /src/Git/GitHub/Albonire/BDI-GB-ZOO
