@@ -1,7 +1,7 @@
 # Sistema de Gestión de Zoológico - Proyecto de Base de Datos
 🚀 **Proyecto de Base de Datos I**
 
-**Autor**: [Anderson González](https://github.com/tuusuario)  
+**Autor**: [Anderson González](https://github.com/Albonire)  
 **Directorio Fuente**: `/src/Git/BDI-GB-ZOO` 📂  
 **Creado**: 23-Octubre-2024 🗓️  
 **Última Actualización**: 14-Noviembre-2024  
