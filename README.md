@@ -1,60 +1,64 @@
-# BDI-GB-ZOO
-# 🚀 Proyecto: Base de Datos I
+# Sistema de Gestión de Zoológico - Proyecto de Base de Datos
+🚀 **Proyecto de Base de Datos I**
 
-**Desarrollador**: Anderson González 
+**Autor**: [Anderson González](https://github.com/tuusuario)  
 **Directorio Fuente**: `/src/Git/BDI-GB-ZOO` 📂  
 **Creado**: 23-Octubre-2024 🗓️  
-**Última Actualización**: 14-Noviembre-2024
+**Última Actualización**: 14-Noviembre-2024  
 
 ## Descripción
-Bienvenido a **Mi Proyecto Asombroso**! Este repositorio alberga algunos de mis experimentos de código más emocionantes y proyectos personales. Siente la libertad de explorar la carpeta `/src` para ver todo el contenido mágico. ⚡
+Este proyecto implementa un sistema de base de datos diseñado para gestionar las operaciones de un zoológico, desde la administración de hábitats y cuidadores hasta el seguimiento de visitantes y animales. Incluye scripts SQL, modelos de datos, y herramientas para automatización y pruebas. Ideal para aprender y aplicar conceptos de bases de datos relacionales.
 
-Las contribuciones y los comentarios siempre son bienvenidos! 🙌
+Las contribuciones y los comentarios siempre son bienvenidos. 🙌
+
+---
 
 ## Estructura del Proyecto
+El proyecto está organizado en diferentes carpetas, cada una dedicada a un aspecto específico del desarrollo. A continuación, se detalla el contenido:
 
-### [docs/](./docs/)
-**Propósito**: Centraliza toda la documentación del proyecto, útil para desarrolladores y administradores.
+### 📚 [docs/](./docs/)
+**Propósito**: Centraliza toda la documentación del proyecto.
 
 **Contenido**:
 - `Diccionario_Datos.xlsx`: Diccionario de datos detallado.
 - `Requerimientos.md`: Documento para especificar requerimientos del sistema.
-- `Especificaciones.md`: Explica las especificaciones técnicas y lógicas del proyecto.
+- `Especificaciones.md`: Explicación de especificaciones técnicas y lógicas.
 
-### [models/](./models/)
-**Propósito**: Almacena los modelos de base de datos en sus diferentes etapas: ERD (Entidad-Relación), LDM (Modelo Lógico) y PDM (Modelo Físico).
+### 🗺️ [models/](./models/)
+**Propósito**: Almacena los modelos de base de datos en sus diferentes etapas.
 
-**Subcarpetas**:
-- [ERD/](./models/ERD/): Diagrama Entidad-Relación que representa el diseño inicial.
-- [LDM/](./models/LDM/): Modelos lógicos que definen relaciones y atributos sin detalles físicos.
-- [PDM/](./models/PDM/): Modelos físicos con definiciones concretas para la implementación.
+1. [ERD/](./models/ERD/): Diagrama Entidad-Relación que representa el diseño inicial.
+2. [LDM/](./models/LDM/): Modelos lógicos que definen relaciones y atributos sin detalles físicos.
+3. [PDM/](./models/PDM/): Modelos físicos con definiciones concretas para la implementación.
 
-### [scripts/](./scripts/)
+### 🛠️ [scripts/](./scripts/)
 **Propósito**: Contiene todos los scripts SQL y archivos de automatización.
 
-**Subcarpetas**:
-- [ddl/](./scripts/ddl/): Scripts de definición de estructura (ej., `CREATE TABLE`, `CREATE INDEX`).
-- [dml/](./scripts/dml/): Scripts de manipulación de datos, como inserciones, actualizaciones y eliminaciones.
-- [select/](./scripts/select/): Consultas SQL para validación de datos o generación de reportes.
-- [scripts_auto/](./scripts/scripts_auto/): Scripts de automatización para cargar datos y ejecutar scripts en batch.
+1. [ddl/](./scripts/ddl/): Scripts de definición de estructura (ej., `CREATE TABLE`, `CREATE INDEX`).
+2. [dml/](./scripts/dml/): Scripts para inserciones, actualizaciones y eliminaciones.
+3. [select/](./scripts/select/): Consultas SQL para validación de datos o reportes.
+4. [scripts_auto/](./scripts/scripts_auto/): Scripts de automatización para ejecutar tareas en batch.
 
-### [data/](./data/)
-**Propósito**: Carpeta para almacenar los datos externos, procesados, y respaldos.
+### 🗄️ [data/](./data/)
+**Propósito**: Almacena datos externos, procesados y respaldos.
 
-**Subcarpetas**:
-- [raw/](./data/raw/): Datos originales en bruto que aún no han sido limpiados.
-- [processed/](./data/processed/): Datos limpios y listos para la carga en el sistema.
-- [backups/](./data/backups/): Archivos de respaldo de la base de datos en diferentes momentos.
+1. [raw/](./data/raw/): Datos originales en bruto.
+2. [processed/](./data/processed/): Datos limpios y listos para cargar.
+3. [backups/](./data/backups/): Archivos de respaldo de la base de datos.
 
-### [tests/](./tests/)
-**Propósito**: Scripts de pruebas y validación para asegurar que la base de datos cumple con las especificaciones.
+### 🧪 [tests/](./tests/)
+**Propósito**: Scripts de pruebas para validar la base de datos.
 
-**Subcarpetas**:
-- [test_cases/](./tests/test_cases/): Carpeta donde se almacenan casos de prueba específicos.
-
-**Archivos**:
-- `integrity_tests.sql`: Pruebas de integridad referencial y de relaciones.
-- `performance_tests.sql`: Pruebas de rendimiento en las consultas.
-- `data_quality_tests.sql`: Pruebas de calidad de datos (ej., valores nulos o fuera de rango).
+1. [test_cases/](./tests/test_cases/): Casos de prueba específicos.
+2. **Archivos de pruebas**:
+   - `integrity_tests.sql`: Pruebas de integridad referencial.
+   - `performance_tests.sql`: Pruebas de rendimiento.
+   - `data_quality_tests.sql`: Validación de calidad de datos.
 
 ---
+
+## Contribuciones
+Las contribuciones son bienvenidas. Por favor, abre un *issue* o crea un *pull request* con tus sugerencias.
+
+---
+updated
