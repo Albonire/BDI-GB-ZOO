@@ -1,0 +1,29 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Rutas básicas
+@app.get("/")
+def root():
+    return {"message": "API funcionando"}
+
+@app.get("/animales/test")
+def test_animales():
+    return {"message": "Test de animales"}
+
+@app.get("/animales")
+def get_animales():
+    return [
+        {"id": 1, "nombre": "León", "especie": "León Africano"},
+        {"id": 2, "nombre": "Tigre", "especie": "Tigre de Bengala"}
+    ]

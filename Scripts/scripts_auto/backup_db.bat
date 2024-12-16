@@ -3,14 +3,14 @@ chcp 65001
 setlocal
 
 :: Configura las variables de conexión
-set "PGHOST=*******"
-set "PGPORT=****"
-set "PGUSER=*******"
-set "PGPASSWORD=*******"
-set "PGDATABASE=******"
+set "PGHOST=localhost"
+set "PGPORT=5432"
+set "PGUSER=adminzoo"
+set "PGPASSWORD=albonire21"
+set "PGDATABASE=zoologico"
 
 :: Configura el directorio de backups
-set "BACKUP_DIR=*******\GitHub - Projects\Doc-UP-AlejandroJaimes\BDI-GB-ZOO\data\backups"
+set "BACKUP_DIR=C:\Users\Usuario\Documents\GIT\BDI-GB-ZOO\data\backups"
 
 :: Obtiene la fecha en formato ddMMyyyy y la hora en formato HHmm
 for /f "tokens=2-4 delims=/ " %%a in ('echo %date%') do (

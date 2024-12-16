@@ -1,0 +1,22 @@
+from fastapi import FastAPI
+
+# Crear la aplicación
+app = FastAPI()
+
+# Rutas simples
+@app.get("/")
+def read_root():
+    return {"message": "root"}
+
+@app.get("/test")
+def read_test():
+    return {"message": "test"}
+
+# Rutas de animales
+@app.get("/animales")
+def get_animales():
+    return {"message": "animales"}
+
+@app.get("/animales/test")
+def get_animales_test():
+    return {"message": "animales test"}

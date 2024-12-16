@@ -1,0 +1,8 @@
+# Folders
+__pycache__/
+venv/
+.aws-sam/
+# files
+.env
+id_ed25519_Desktop_Alejo
+id_ed25519_Desktop_Alejo.pub
