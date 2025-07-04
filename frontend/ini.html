@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,14 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary-bg: #f0f4f0;
+  --primary-bg: #E9E6E1;
   --card-bg: #e6ebe6;
-  --text-color: #2c3e2c;
+  --text-color: #211D1E;
   --accent-color: #8fbc8f;
   --hover-color: #7caa7c;
   --danger-color: #cc6666;
@@ -25,7 +28,7 @@
 }
 
 body {
-  font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   background-color: var(--primary-bg);
   color: var(--text-color);
 }
@@ -42,7 +45,7 @@ body {
 }
 
 .carousel-caption {
-  background: linear-gradient(to bottom, rgba(7, 20, 7, 0.8), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(to bottom, rgba(7, 20, 7, 0.8), rgba(0, 0, 0, 0.377));
   padding: 20px;
   border-radius: 10px;
 }
@@ -78,6 +81,11 @@ body {
   border: 4px solid var(--text-color);
 }
 
+.card-text {
+    font-size: 0.83rem;
+    
+}
+
 .btn-primary {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
@@ -98,8 +106,46 @@ body {
   border-color: var(--danger-hover);
 }
 
-h2, h5 {
+h1 {
+  font-family: 'Libre Baskerville', serif;
   color: var(--text-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+h3 {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-color);
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+h6 {
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .music-player iframe {
@@ -120,13 +166,13 @@ body.dark-mode {
   color: var(--dark-text-color);
 }
 
-.dark-mode h2, .dark-mode h5 {
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
   color: var(--dark-text-color);
 }
 
 .noselect {
   width: 150px;
-  height: 50px;
+  height: 38px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -148,6 +194,8 @@ body.dark-mode {
   font-weight: bold;
   text-align: center;
   width: 100%;
+  line-height: 38px;
+  font-size: 0.875rem;
   transition: color 300ms ease-in-out;
 }
 
@@ -155,7 +203,7 @@ body.dark-mode {
   position: absolute;
   border-left: 1px solid #c41b1b;
   transform: translateX(-110px);
-  height: 40px;
+  height: 38px;
   width: 40px;
   display: flex;
   align-items: center;
@@ -191,33 +239,53 @@ body.dark-mode {
 .noselect:active .icon svg {
   transform: scale(0.8);
 }
+
+.dropdown-menu {
+    background-color: var(--card-bg);
+}
+
+.dropdown-item {
+    color: var(--text-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--hover-color);
+}
+
+.dark-mode .dropdown-menu {
+    background-color: var(--dark-card-bg);
+}
+
+.dark-mode .dropdown-item {
+    color: var(--dark-text-color);
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: var(--dark-hover-color);
+}
 </style>
 </head>
-<body>
+<body class="dark-mode">
     <!-- Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid px-4">
             <a class="navbar-brand ms-3" href="https://github.com/Albonire/BDI-GB-ZOO/tree/main/frontend">
                 <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/logoback.png?raw=true" alt="Logo" width="30" height="28">   ZOO-BDI 
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse justify-content-end me-3" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#introCarousel" data-lang="nav-home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#baseDatos" data-lang="nav-database">Database</a></li>
                     <li class="nav-item"><a class="nav-link" href="#equipo" data-lang="nav-team">Team</a></li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light mx-2" id="toggleLanguage">
-                            <i class="bi bi-translate"></i> ES/EN
-                        </button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light" id="toggleTheme">
-                            <i class="bi bi-moon-fill" id="themeIcon"></i>
-                        </button>
-                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-outline-light" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
+                    <li><button class="dropdown-item" type="button" id="toggleLanguage"><i class="bi bi-translate"></i> <span data-lang="language">Language</span></button></li>
+                    <li><button class="dropdown-item" type="button" id="toggleTheme"><i class="bi bi-moon-fill" id="themeIcon"></i> <span data-lang="theme">Theme</span></button></li>
                 </ul>
             </div>
         </div>
@@ -241,8 +309,8 @@ body.dark-mode {
                 <span class="chinese-symbol" style="bottom: 30px; right: 30px;">命</span>
                 <div class="d-flex h-100 align-items-center justify-content-center text-white text-center">
                     <div class="carousel-caption">
-                        <h2 data-lang="manage-title">Gestiona tus animales fácilmente </h2>
-<p data-lang="manage-subtitle">Administración intuitiva y moderna</p>
+                        <h2 data-lang="manage-title">Easily manage your animals</h2>
+<p data-lang="manage-subtitle">Intuitive and modern administration</p>
                     </div>
                 </div>
             </div>
@@ -251,33 +319,33 @@ body.dark-mode {
                 <span class="chinese-symbol" style="bottom: 20px; left: 20px;">然</span>
                 <div class="d-flex h-100 align-items-center justify-content-center text-white text-center">
                     <div class="carousel-caption">
-<h2 data-lang="explore-title">Explora la base de datos del zoológico </h2>
-<p data-lang="explore-subtitle">Información detallada y actualizada</p>
+<h2 data-lang="explore-title">Explore the zoo database</h2>
+<p data-lang="explore-subtitle">Detailed and updated information</p>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#introCarousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#introCarousel" data-bs-slide="prev" title="Previous">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+            <span class="visually-hidden" data-lang="carousel-prev">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#introCarousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#introCarousel" data-bs-slide="next" title="Next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
+            <span class="visually-hidden" data-lang="carousel-next">Next</span>
         </button>
     </div>
 
     <!-- Database Section -->
     <div id="baseDatos" class="container my-5">
-        <h2 class="text-center mb-4" data-lang="database-title">Base de Datos del Zoológico <img src="https://th.bing.com/th/id/R.780f58783ffe9e2144a09fe1ffd6ace8?rik=oLg07U2F3GWRlg&pid=ImgRaw&r=0" alt="Postgres" width="40" height="40"> </h2>
+        <h2 class="text-center mb-4" data-lang="database-title">Zoo Database <img src="https://th.bing.com/th/id/R.780f58783ffe9e2144a09fe1ffd6ace8?rik=oLg07U2F3GWRlg&pid=ImgRaw&r=0" alt="Postgres" width="40" height="40"> </h2>
         <div class="row">
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title" data-lang="animal-register-title">Registro de Animales</h5>
-                        <p class="card-text" data-lang="animal-register-text">Gestiona y consulta información detallada de cada especie en el zoológico.</p>
+                        <h5 class="card-title" data-lang="animal-register-title">Animal Registration</h5>
+                        <p class="card-text" data-lang="animal-register-text">Manage and consult detailed information of each species in the zoo.</p>
                         <form action="/GET/registrar-animal" method="post">
-                            <button type="submit" class="btn btn-primary" data-lang="animal-register-button">Registrar Animal</button>
+                            <button type="submit" class="btn btn-primary" data-lang="animal-register-button">Register Animal</button>
                         </form>
                     </div>
                 </div>
@@ -285,10 +353,10 @@ body.dark-mode {
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title" data-lang="animal-query-title">Consultar Animal</h5>
-                        <p class="card-text" data-lang="animal-query-text">Consultar en la base de datos de los animales localmente para visualizar el animal requerido.</p>
+                        <h5 class="card-title" data-lang="animal-query-title">Consult Animal</h5>
+                        <p class="card-text" data-lang="animal-query-text">Consult the local animal database to view the required animal.</p>
                         <form action="/animales" method="get">
-                            <button type="submit" class="btn btn-primary" data-lang="animal-query-button">Consultar</button>
+                            <button type="submit" class="btn btn-primary" data-lang="animal-query-button">Consult</button>
                         </form>
                     </div>
                 </div>
@@ -296,8 +364,8 @@ body.dark-mode {
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title" data-lang="animal-update-title">Actualizar Animal</h5>
-                        <p class="card-text" data-lang="animal-update-text">Verificación o actualización de los registros existentes de la Base de Datos.</p>
+                        <h5 class="card-title" data-lang="animal-update-title">Update Animal</h5>
+                        <p class="card-text" data-lang="animal-update-text">Verification or update of existing records in the Database.</p>
                         <form action="/animales" method="get">
 
                             <button type="submit" class="btn btn-primary" data-lang="animal-update-button">Update Animal</button>
@@ -308,11 +376,11 @@ body.dark-mode {
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title" data-lang="animal-delete-title">Eliminar Animal</h5>
-                        <p class="card-text" data-lang="animal-delete-text">Procedimiento para dar de baja a un animal del registro de la base de datos del zoológico.</p>
+                        <h5 class="card-title" data-lang="animal-delete-title">Delete Animal</h5>
+                        <p class="card-text" data-lang="animal-delete-text">Procedure to remove an animal from the zoo's database record.</p>
                         <form action="/GET/eliminar-animal" method="post">
                             <button type="submit" class="noselect">
-                                <span class="text" data-lang="animal-delete-button">Eliminar Animal</span>
+                                <span class="text" data-lang="animal-delete-button">Delete Animal</span>
                                 <span class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
@@ -329,13 +397,13 @@ body.dark-mode {
     <!-- Team Section -->
 <section id="equipo" class="py-5">
     <div class="container text-center">
-        <h2 class="mb-4" data-lang="team-title">Nuestro Equipo</h2>
+        <h2 class="mb-4" data-lang="team-title">Our Team</h2>
         <div class="row g-4">
             <div class="col-md-4">
                     <div class="card">
                         <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/anderson.jpg?raw=true" class="card-img-top rounded-circle" alt="Líder">
                         <div class="card-body">
-                            <h5 class="card-title" data-lang="role-product-owner">Anderson González</h5>
+                            <h5 class="card-title" data-lang="member-1-name">Anderson González</h5>
                             <p class="card-text" data-lang="role-product-owner">Product Owner</p>
                             <div class="d-flex justify-content-center">
                                 <a href="https://www.linkedin.com/in/anderson-gonzaleza21/" class="btn btn-outline-primary mx-1"><i class="bi bi-linkedin"></i></a>
@@ -349,7 +417,7 @@ body.dark-mode {
                 <div class="card">
                     <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/mateo.jpg?raw=true" class="card-img-top rounded-circle" alt="scrusmmas">
                     <div class="card-body">
-                        <h5 class="card-title">Mateo Orduz</h5>
+                        <h5 class="card-title" data-lang="member-2-name">Mateo Orduz</h5>
                         <p class="card-text" data-lang="role-scrum-master">Scrum Master</p>
                         <div class="d-flex justify-content-center">
                             <a href="https://github.com/mateo739" class="btn btn-outline-primary mx-1"><i class="bi bi-github"></i></a>
@@ -359,9 +427,9 @@ body.dark-mode {
             </div>
             <div class="col-md-4">
                 <div class="card">
-                    <iframe src="https://github.com/Kevin698-stars" class="card-img-top rounded-circle" alt="slave"></iframe>
+                    <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/kevin.png?raw=true" class="card-img-top rounded-circle" alt="slave">
                     <div class="card-body">
-                        <h5 class="card-title" data-lang="role-dev-team">Kevin Madrid</h5>
+                        <h5 class="card-title" data-lang="member-3-name">Kevin Madrid</h5>
                         <p class="card-text" data-lang="role-dev-team">Development Team.</p>
                         <div class="d-flex justify-content-center">
                             <a href="#" class="btn btn-outline-primary mx-1"><i class="bi bi-linkedin"></i></a>
@@ -395,6 +463,8 @@ body.dark-mode {
             "nav-home": "Home",
             "nav-database": "Database",
             "nav-team": "Team",
+            "language": "Language",
+            "theme": "Theme",
             "welcome-title": "Welcome to ZOO-BDI",
             "welcome-subtitle": "Discover the world of nature",
             "manage-title": "Easily manage your animals",
@@ -405,24 +475,31 @@ body.dark-mode {
             "animal-register-title": "Animal Registration",
             "animal-register-text": "Manage and consult detailed information of each species in the zoo.",
             "animal-register-button": "Register Animal",
-            "animal-query-title": "Query Animal",
-            "animal-query-text": "Query the animal database locally to view the required animal.",
-            "animal-query-button": "Query",
+            "animal-query-title": "Consult Animal",
+            "animal-query-text": "Consult the local animal database to view the required animal.",
+            "animal-query-button": "Consult Animal",
             "animal-update-title": "Update Animal",
-            "animal-update-text": "Verification or update of existing Database records.",
+            "animal-update-text": "Verification or update of existing records in the Database.",
             "animal-update-button": "Update Animal",
             "animal-delete-title": "Delete Animal",
-            "animal-delete-text": "Procedure to remove an animal from the zoo database registry.",
+            "animal-delete-text": "Procedure to remove an animal from the zoo's database record.",
             "animal-delete-button": "Delete Animal",
             "team-title": "Our Team",
             "role-product-owner": "Product Owner",
             "role-scrum-master": "Scrum Master",
-            "role-dev-team": "Development Team"
+            "role-dev-team": "Development Team",
+            "member-1-name": "Anderson González",
+            "member-2-name": "Mateo Orduz",
+            "member-3-name": "Kevin Madrid",
+            "carousel-prev": "Previous",
+            "carousel-next": "Next"
         },
         es: {
             "nav-home": "Inicio",
             "nav-database": "Base de Datos",
             "nav-team": "Equipo",
+            "language": "Idioma",
+            "theme": "Tema",
             "welcome-title": "Bienvenidos a ZOO-BDI",
             "welcome-subtitle": "Descubre el mundo de la naturaleza",
             "manage-title": "Gestiona tus animales fácilmente",
@@ -445,7 +522,15 @@ body.dark-mode {
             "team-title": "Nuestro Equipo",
             "role-product-owner": "Product Owner",
             "role-scrum-master": "Scrum Master",
-            "role-dev-team": "Equipo de Desarrollo"
+            "role-dev-team": "Equipo de Desarrollo",
+            "member-1-name": "Anderson González",
+            "member-2-name": "Mateo Orduz",
+            "member-3-name": "Kevin Madrid",
+            "carousel-prev": "Anterior",
+            "carousel-next": "Siguiente",
+            "alt-leader": "Líder",
+            "alt-scrum-master": "Scrum Master",
+            "alt-developer": "Desarrollador"
         }
     };
 
@@ -459,18 +544,31 @@ body.dark-mode {
     function updateLanguage() {
         document.querySelectorAll('[data-lang]').forEach(element => {
             const key = element.getAttribute('data-lang');
-            element.textContent = translations[currentLang][key];
+            if (element.tagName === 'BUTTON') {
+                const span = element.querySelector('span');
+                if (span) {
+                    span.textContent = translations[currentLang][key];
+                } else {
+                    element.textContent = translations[currentLang][key];
+                }
+            } else {
+                element.textContent = translations[currentLang][key];
+            }
+        });
+        document.querySelectorAll('[data-lang-alt]').forEach(element => {
+            const key = element.getAttribute('data-lang-alt');
+            element.alt = translations[currentLang][key];
         });
     }
 
     // Función para cambiar el tema
-    let isDarkMode = false;
+    let isDarkMode = true;
     document.getElementById('toggleTheme').addEventListener('click', () => {
         isDarkMode = !isDarkMode;
         document.body.classList.toggle('dark-mode');
         const themeIcon = document.getElementById('themeIcon');
-        themeIcon.classList.toggle('bi-moon-fill');
         themeIcon.classList.toggle('bi-sun-fill');
+        themeIcon.classList.toggle('bi-moon-fill');
     });
 
     // Inicializar el idioma en inglés
