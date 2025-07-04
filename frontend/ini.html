@@ -341,10 +341,10 @@ body.dark-mode {
         <div class="row">
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title" data-lang="animal-register-title">Animal Registration</h5>
                         <p class="card-text" data-lang="animal-register-text">Manage and consult detailed information of each species in the zoo.</p>
-                        <form action="/GET/registrar-animal" method="post">
+                        <form action="/GET/registrar-animal" method="post" class="mt-auto text-end">
                             <button type="submit" class="btn btn-primary" data-lang="animal-register-button">Register Animal</button>
                         </form>
                     </div>
@@ -352,10 +352,10 @@ body.dark-mode {
             </div>
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title" data-lang="animal-query-title">Consult Animal</h5>
                         <p class="card-text" data-lang="animal-query-text">Consult the local animal database to view the required animal.</p>
-                        <form action="/animales" method="get">
+                        <form action="/animales" method="get" class="mt-auto text-end">
                             <button type="submit" class="btn btn-primary" data-lang="animal-query-button">Consult</button>
                         </form>
                     </div>
@@ -363,11 +363,10 @@ body.dark-mode {
             </div>
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title" data-lang="animal-update-title">Update Animal</h5>
                         <p class="card-text" data-lang="animal-update-text">Verification or update of existing records in the Database.</p>
-                        <form action="/animales" method="get">
-
+                        <form action="/animales" method="get" class="mt-auto text-end">
                             <button type="submit" class="btn btn-primary" data-lang="animal-update-button">Update Animal</button>
                         </form>
                     </div>
@@ -375,11 +374,11 @@ body.dark-mode {
             </div>
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title" data-lang="animal-delete-title">Delete Animal</h5>
                         <p class="card-text" data-lang="animal-delete-text">Procedure to remove an animal from the zoo's database record.</p>
-                        <form action="/GET/eliminar-animal" method="post">
-                            <button type="submit" class="noselect">
+                        <form action="/GET/eliminar-animal" method="post" class="mt-auto text-end">
+                            <button type="submit" class="noselect ms-auto">
                                 <span class="text" data-lang="animal-delete-button">Delete Animal</span>
                                 <span class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
