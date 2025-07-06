@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'; // Ensure this is correct
+const API_URL = 'http://localhost:8000';
 
 // Cargar datos iniciales
 async function loadInitialData() {
