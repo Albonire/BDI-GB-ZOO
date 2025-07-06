@@ -19,7 +19,13 @@ class AnimalesGetEndpoint(AnimalesBase):
     especie_id: Optional[int] = None
 
     class Config:
-        from_attributes = True
+        orm_mode = True
+
+class AnimalesPaginatedResponse(BaseModel):
+    items: list[AnimalesGetEndpoint]
+    total: int
+    page: int
+    page_size: int
 
 
 

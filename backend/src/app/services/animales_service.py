@@ -22,18 +22,26 @@ def create_animal(db: Session, animal: AnimalesCreate):
 def get_animal_by_id(db: Session, animal_id: int):
     return db.query(AnimalesModel).filter(AnimalesModel.id == animal_id).first()
 
-def get_animales_paginated(db: Session, page: int, page_size: int) -> List[AnimalesModel]:
+def get_animales_paginated(db: Session, page: int, page_size: int) -> dict:
     """
-    Obtiene lista de animales con paginación.
+    Obtiene lista de animales con paginación y metadatos.
     """
     skip = (page - 1) * page_size
-    return (
+    total = db.query(AnimalesModel).count()
+    animales = (
         db.query(AnimalesModel)
         .order_by(AnimalesModel.id.desc())
         .offset(skip)
         .limit(page_size)
         .all()
     )
+    items = [AnimalesGetEndpoint.from_orm(animal) for animal in animales]
+    return {
+        "items": items,
+        "total": total,
+        "page": page,
+        "page_size": page_size
+    }
 
 def delete_animal(db: Session, animal_id: int) -> bool:
     db_animal = get_animal_by_id(db, animal_id)
