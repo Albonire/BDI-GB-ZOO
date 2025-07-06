@@ -15,6 +15,18 @@ Incluye scripts SQL, modelos de datos, automatización, pruebas y un frontend re
 
 ---
 
+## Capturas de pantalla
+
+### Inicio
+
+![Captura de la sección de inicio](frontend/img/captura_inicio.png)
+
+### Lista de animales
+
+![Captura de la lista de animales](frontend/img/captura_lista_animales.png)
+
+---
+
 ## Tecnologías principales
 
 - **Backend:** Python, FastAPI, SQLAlchemy, Pydantic, PostgreSQL
@@ -168,4 +180,6 @@ Asegúrate de que el backend esté corriendo en `http://localhost:8000`.
 
 Las contribuciones son bienvenidas.  
 Por favor, abre un *issue* o crea un *pull request* con tus sugerencias.
+
+---
 
