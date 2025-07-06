@@ -1,6 +1,6 @@
 SET client_encoding = 'UTF8';
 
-INSERT INTO animals.FAMILIA (NombreCientifico, NombreComun) VALUES
+INSERT INTO animals.familia (nombre_cientifico, nombre_comun) VALUES
 ('Felidae', 'Felinos'),         -- Ejemplo: Tigres, leones, panteras.
 ('Canidae', 'Canidos'),         -- Ejemplo: Lobos, zorros.
 ('Ursidae', 'Ursidos'),         -- Ejemplo: Osos.
@@ -24,18 +24,18 @@ INSERT INTO animals.FAMILIA (NombreCientifico, NombreComun) VALUES
 ('Strigidae', 'Lechuzas'),
 ('Pteropodidae', 'Zorros voladores');
 
-INSERT INTO animals.ESTADO_CONSERVACION (Codigo, Nombre, Descripcion) VALUES
-('EX', 'Extinto', 'La especie ya no existe'),
-('EW', 'Extinto en estado salvaje', 'Solo sobrevive en cautiverio'),
-('CR', 'En peligro critico', 'En peligro extremo de extinción'),
-('EN', 'En peligro', 'Alto riesgo de extincion'),
-('VU', 'Vulnerable', 'Riesgo elevado de extincion a mediano plazo'),
-('NT', 'Casi amenazado', 'En riesgo, pero no aun en peligro'),
-('LC', 'Preocupacion menor', 'Bajo riesgo de extincion'),
-('DD', 'Datos deficientes', 'No hay informacion suficiente'),
-('NE', 'No evaluado', 'Aun no se ha evaluado el estado de conservacion');
+INSERT INTO animals.estado_conservacion (codigo, nombre, descripcion) VALUES
+(1, 'Extinto', 'La especie ya no existe'),
+(2, 'Extinto en estado salvaje', 'Solo sobrevive en cautiverio'),
+(3, 'En peligro critico', 'En peligro extremo de extinción'),
+(4, 'En peligro', 'Alto riesgo de extincion'),
+(5, 'Vulnerable', 'Riesgo elevado de extincion a mediano plazo'),
+(6, 'Casi amenazado', 'En riesgo, pero no aun en peligro'),
+(7, 'Preocupacion menor', 'Bajo riesgo de extincion'),
+(8, 'Datos deficientes', 'No hay informacion suficiente'),
+(9, 'No evaluado', 'Aun no se ha evaluado el estado de conservacion');
 
-INSERT INTO animals.UBICACION (Nombre) VALUES
+INSERT INTO animals.ubicacion (nombre) VALUES
 ('Zona Tropical'),         -- Area dedicada a animales de climas tropicales
 ('Zona Desertica'),        -- Area con habitats deserticos
 ('Zona de Montaña'),       -- Area para animales de zonas montañosas
@@ -57,7 +57,7 @@ INSERT INTO animals.UBICACION (Nombre) VALUES
 ('Recinto de Grandes Felinos'), -- Area dedicada a tigres, leones, etc.
 ('Zona de Alimentacion');  -- Area de alimentacion y observacion
 
-INSERT INTO animals.CLIMA (Nombre) VALUES
+INSERT INTO animals.clima (nombre) VALUES
 ('Tropical'),            -- Clima calido y humedo, tipico de zonas tropicales
 ('Desertico'),           -- Clima seco y caluroso, propio de desiertos
 ('Templado'),            -- Clima con variaciones moderadas de temperatura
@@ -74,7 +74,7 @@ INSERT INTO animals.CLIMA (Nombre) VALUES
 ('Marino'),              -- Clima costero, con temperaturas moderadas y humedad alta
 ('Alpino');              -- Clima de montaña, con aire fresco y temperaturas bajas
 
-INSERT INTO animals.ESPECIALIDAD (Nombre) VALUES
+INSERT INTO animals.especialidad (nombre) VALUES
 ('Manejo de Grandes Felinos'),    -- Habilidad para cuidar y manejar tigres, leones, etc.
 ('Cuidados de Reptiles'),         -- Especializacion en reptiles como serpientes y cocodrilos
 ('Aves Exoticas'),                -- Habilidad en el cuidado de especies de aves exoticas
@@ -91,7 +91,7 @@ INSERT INTO animals.ESPECIALIDAD (Nombre) VALUES
 ('Animales Domesticos'),          -- Manejo de especies domesticas en areas de contacto
 ('Cria en Cautiverio');           -- Habilidad en la reproduccion controlada de especies en zoologicos
 
-INSERT INTO animals.TIPO_VISITANTES (Nombre, Descuento) VALUES 
+INSERT INTO animals.tipo_visitantes (nombre, descuento) VALUES 
 ('Adulto', 0.00),        -- Sin descuento
 ('Menor de edad', 10.00), -- 10% de descuento
 ('Estudiante', 20.00),   -- 20% de descuento

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from src.app.schemas.animales import AnimalesCreate, AnimalesGetEndpoint, AnimalesPaginatedResponse
-from src.app.services.animales_service import create_animal, get_animales_paginated, delete_animal
+from src.app.services.animales_service import create_animal, get_animales_paginated, delete_animal, update_animal
 from src.app.database.database import get_db
 from typing import List
 
@@ -23,3 +23,7 @@ def eliminar_animal(animal_id: int, db: Session = Depends(get_db)):
     if not ok:
         raise HTTPException(status_code=404, detail="Animal no encontrado")
     return {"ok": True}
+
+@router.put("/{animal_id}", response_model=AnimalesGetEndpoint)
+def actualizar_animal(animal_id: int, animal: AnimalesCreate, db: Session = Depends(get_db)):
+    return update_animal(db, animal_id, animal)

@@ -50,3 +50,13 @@ def delete_animal(db: Session, animal_id: int) -> bool:
     db.delete(db_animal)
     db.commit()
     return True
+
+def update_animal(db: Session, animal_id: int, animal: AnimalesCreate):
+    db_animal = get_animal_by_id(db, animal_id)
+    if not db_animal:
+        raise HTTPException(status_code=404, detail="Animal no encontrado")
+    for field, value in animal.dict().items():
+        setattr(db_animal, field, value)
+    db.commit()
+    db.refresh(db_animal)
+    return db_animal

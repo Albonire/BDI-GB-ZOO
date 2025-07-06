@@ -29,6 +29,8 @@ async function loadInitialData() {
         populateSelect('cuidadorSelect', cuidadores);
         populateSelect('habitatSelect', habitats);
         populateSelect('especieSelect', especies);
+
+        mostrarAnimales(animales);
     } catch (error) {
         console.error('Error cargando datos:', error);
         alert('Error cargando datos: ' + error.message);
@@ -84,6 +86,41 @@ document.getElementById('registroForm')?.addEventListener('submit', async (e) =>
         alert('Error al registrar el animal');
     }
 });
+
+function mostrarAnimales(animales) {
+    const tbody = document.querySelector('#tablaAnimales tbody');
+    tbody.innerHTML = '';
+    animales.forEach(animal => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${animal.id}</td>
+            <td>${animal.nombre}</td>
+            <td>${animal.fecha_nacimiento || ''}</td>
+            <td>${animal.cuidador_id || ''}</td>
+            <td>${animal.habitat_id || ''}</td>
+            <td>${animal.especie_id || ''}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="eliminarAnimal(${animal.id})">Eliminar</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+async function eliminarAnimal(id) {
+    if (!confirm('¿Seguro que deseas eliminar este animal?')) return;
+    try {
+        const res = await fetch(`${API_URL}/animales/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            alert('Animal eliminado');
+            loadInitialData();
+        } else {
+            alert('Error al eliminar el animal');
+        }
+    } catch (e) {
+        alert('Error al eliminar el animal');
+    }
+}
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {

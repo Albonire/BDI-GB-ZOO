@@ -15,3 +15,4 @@ class EspecieModel(Base):
     # Relaciones
     habitat = relationship("HabitatModel", back_populates="especies")
     estado_conservacion = relationship("EstadoConservacionModel", back_populates="especies")
+    animales = relationship("AnimalesModel", back_populates="especie")

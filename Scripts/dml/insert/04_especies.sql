@@ -1,6 +1,6 @@
 SET client_encoding = 'UTF8';
 
-INSERT INTO animals.ESPECIE (Nombre, IDFamilia, IDEstadoConservacion) VALUES
+INSERT INTO animals.especie (nombre, descripcion, estado_conservacion_id) VALUES
 -- Felidae
 ('León', (SELECT ID FROM animals.FAMILIA WHERE NombreCientifico = 'Felidae'), (SELECT ID FROM animals.ESTADO_CONSERVACION WHERE Codigo = 'VU')),
 ('Tigre', (SELECT ID FROM animals.FAMILIA WHERE NombreCientifico = 'Felidae'), (SELECT ID FROM animals.ESTADO_CONSERVACION WHERE Codigo = 'EN')),
