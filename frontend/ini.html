@@ -264,17 +264,19 @@ body.dark-mode {
     background-color: var(--dark-hover-color);
 }
 
-/* --- Estilos personalizados para la tabla de animales en modo oscuro (sin hover, texto negro, fondo fijo) --- */
+/* --- Estilos personalizados para la tabla de animales en modo oscuro --- */
 .table.dark-table {
   background-color: #222 !important;
-  color: #222 !important;
+  color: var(--dark-text-color) !important;
   font-family: 'Source Sans Pro', sans-serif;
   border-radius: 8px;
   overflow: hidden;
 }
+
 .table.dark-table thead tr {
   background-color: var(--dark-accent-color) !important;
 }
+
 .table.dark-table thead th {
   color: #fff !important;
   padding: 14px 10px;
@@ -284,52 +286,30 @@ body.dark-mode {
   letter-spacing: 0.5px;
   background-color: var(--dark-accent-color) !important;
 }
+
 .table.dark-table tbody tr {
   background-color: #2c2c2c !important;
-  transition: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  color: black !important; /* Texto de las filas en negro */
 }
+
 .table.dark-table tbody tr:nth-child(even) {
   background-color: #333 !important;
 }
+
+.table.dark-table tbody tr:hover {
+  background-color: #a9a9a9 !important; /* Fondo gris claro en hover para mejor legibilidad */
+  color: black !important; /* Asegura que el texto siga siendo negro en hover */
+  cursor: pointer;
+}
+
 .table.dark-table tbody td {
-  color: #222 !important;
   padding: 12px 10px;
   border-top: 1px solid #444 !important;
   border-bottom: 1px solid #222 !important;
   font-size: 1rem;
-}
-/* Elimina cualquier efecto hover en filas y celdas */
-.table.dark-table tbody tr:hover,
-.table.dark-table tbody tr:hover td {
-  background-color: inherit !important;
-  color: #222 !important;
-  cursor: default;
-}
-/* --- Anula cualquier efecto hover, focus, active o visited en filas de la tabla --- */
-.table.dark-table tbody tr:hover,
-.table.dark-table tbody tr:hover td,
-.table.dark-table tbody tr:active,
-.table.dark-table tbody tr:focus,
-.table.dark-table tbody tr:visited {
-  background-color: inherit !important;
-  color: #222 !important;
-  cursor: default !important;
-  box-shadow: none !important;
-}
-/* --- Anula cualquier efecto hover, focus o active en filas y celdas de la tabla --- */
-.table.dark-table tbody tr:hover,
-.table.dark-table tbody tr:hover td,
-.table.dark-table tbody tr:active,
-.table.dark-table tbody tr:active td,
-.table.dark-table tbody tr:focus,
-.table.dark-table tbody tr:focus td,
-.table.dark-table tbody td:hover,
-.table.dark-table tbody td:active,
-.table.dark-table tbody td:focus {
-  background-color: inherit !important;
-  color: #222 !important;
-  box-shadow: none !important;
-  cursor: default !important;
+  transition: color 0.2s ease-in-out;
+  color: inherit !important; /* Hereda el color de la fila (tr) */
 }
 </style>
 </head>
@@ -539,16 +519,6 @@ body.dark-mode {
     </div>
 </section>
 
-<!-- 
-<div class="music-player">
-    <iframe 
-        src="https://www.youtube.com/embed/GwyXQO0tSW4?autoplay=1&loop=1&playlist=GwyXQO0tSW4&mute=0" 
-        title="Background Music" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-    </iframe>
-</div>
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
