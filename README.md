@@ -1,64 +1,171 @@
-# Sistema de Gestión de Zoológico - Proyecto de Base de Datos
-🚀 **Proyecto de Base de Datos I**
+# 🦁 BDI-GB-ZOO – Sistema de Gestión de Zoológico
 
-**Autor**: [Anderson González](https://github.com/Albonire)  
-**Directorio Fuente**: `/src/Git/BDI-GB-ZOO` 📂  
-**Creado**: 23-Octubre-2024 🗓️  
-**Última Actualización**: 14-Noviembre-2024  
+**Proyecto de Base de Datos I**  
+**Autores:** Anderson González, Mateo Orduz, Kevin Madrid  
+**Repositorio:** [GitHub](https://github.com/Albonire/BDI-GB-ZOO)  
+**Creado:** Octubre 2024  
+**Última actualización:** Junio 2024
+
+---
 
 ## Descripción
-Este proyecto implementa un sistema de base de datos diseñado para gestionar las operaciones de un zoológico, desde la administración de hábitats y cuidadores hasta el seguimiento de visitantes y animales. Incluye scripts SQL, modelos de datos, y herramientas para automatización y pruebas. Ideal para aprender y aplicar conceptos de bases de datos relacionales.
 
-Las contribuciones y los comentarios siempre son bienvenidos. 🙌
+Este proyecto implementa un sistema completo para la gestión de un zoológico, abarcando desde la administración de animales, hábitats, especies y cuidadores, hasta la consulta y manipulación de datos mediante una API RESTful y una interfaz web moderna.  
+Incluye scripts SQL, modelos de datos, automatización, pruebas y un frontend responsivo con soporte para modo oscuro y traducción dinámica.
+
+---
+
+## Tecnologías principales
+
+- **Backend:** Python, FastAPI, SQLAlchemy, Pydantic, PostgreSQL
+- **Frontend:** HTML5, CSS3, Bootstrap 5, JavaScript (ES6)
+- **Automatización y scripts:** Bash, SQL
+- **Otros:** Alembic (migraciones), Docker (opcional)
 
 ---
 
 ## Estructura del Proyecto
-El proyecto está organizado en diferentes carpetas, cada una dedicada a un aspecto específico del desarrollo. A continuación, se detalla el contenido:
 
-### 📚 [docs/](./docs/)
-**Propósito**: Centraliza toda la documentación del proyecto.
+```
+BDI-GB-ZOO/
+│
+├── backend/           # API REST, lógica de negocio y modelos
+│   ├── src/app/
+│   │   ├── routers/   # Endpoints (animales, cuidadores, hábitats, especies)
+│   │   ├── models/    # Modelos ORM SQLAlchemy
+│   │   ├── schemas/   # Esquemas Pydantic (validación y serialización)
+│   │   ├── services/  # Lógica de negocio
+│   │   └── database/  # Configuración y conexión BD
+│   ├── requirements.txt
+│   └── alembic/       # Migraciones de base de datos
+│
+├── frontend/          # Interfaz web
+│   ├── ini.html       # Página principal (SPA)
+│   ├── js/            # Lógica JS (animales.js, etc.)
+│   └── img/           # Imágenes del equipo y logotipo
+│
+├── Scripts/           # SQL y automatización
+│   ├── ddl/           # Definición de estructura
+│   ├── dml/           # Datos de ejemplo
+│   ├── select/        # Consultas de validación
+│   └── scripts_auto/  # Automatización de carga y backup
+│
+├── data/              # Backups y datos de ejemplo
+├── docs/              # Documentación y diagramas
+├── models/            # Modelos ERD, LDM, PDM
+└── README.md
+```
 
-**Contenido**:
-- `Diccionario_Datos.xlsx`: Diccionario de datos detallado.
-- `Requerimientos.md`: Documento para especificar requerimientos del sistema.
-- `Especificaciones.md`: Explicación de especificaciones técnicas y lógicas.
+---
 
-### 🗺️ [models/](./models/)
-**Propósito**: Almacena los modelos de base de datos en sus diferentes etapas.
+## Instalación y ejecución
 
-1. [ERD/](./models/ERD/): Diagrama Entidad-Relación que representa el diseño inicial.
-2. [LDM/](./models/LDM/): Modelos lógicos que definen relaciones y atributos sin detalles físicos.
-3. [PDM/](./models/PDM/): Modelos físicos con definiciones concretas para la implementación.
+### 1. Backend (FastAPI)
 
-### 🛠️ [scripts/](./scripts/)
-**Propósito**: Contiene todos los scripts SQL y archivos de automatización.
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # o .\\venv\\Scripts\\activate en Windows
+pip install -r requirements.txt
+# Configura tu base de datos PostgreSQL y variables de entorno
+uvicorn src.app.main:app --reload
+```
 
-1. [ddl/](./scripts/ddl/): Scripts de definición de estructura (ej., `CREATE TABLE`, `CREATE INDEX`).
-2. [dml/](./scripts/dml/): Scripts para inserciones, actualizaciones y eliminaciones.
-3. [select/](./scripts/select/): Consultas SQL para validación de datos o reportes.
-4. [scripts_auto/](./scripts/scripts_auto/): Scripts de automatización para ejecutar tareas en batch.
+### 2. Frontend
 
-### 🗄️ [data/](./data/)
-**Propósito**: Almacena datos externos, procesados y respaldos.
+Abre `frontend/ini.html` directamente en tu navegador.  
+Asegúrate de que el backend esté corriendo en `http://localhost:8000`.
 
-1. [raw/](./data/raw/): Datos originales en bruto.
-2. [processed/](./data/processed/): Datos limpios y listos para cargar.
-3. [backups/](./data/backups/): Archivos de respaldo de la base de datos.
+---
 
-### 🧪 [tests/](./tests/)
-**Propósito**: Scripts de pruebas para validar la base de datos.
+## Principales funcionalidades
 
-1. [test_cases/](./tests/test_cases/): Casos de prueba específicos.
-2. **Archivos de pruebas**:
-   - `integrity_tests.sql`: Pruebas de integridad referencial.
-   - `performance_tests.sql`: Pruebas de rendimiento.
-   - `data_quality_tests.sql`: Validación de calidad de datos.
+- **Gestión de animales:** Alta, baja, modificación y consulta paginada.
+- **Gestión de cuidadores, hábitats y especies:** Consulta y asignación.
+- **Validaciones visuales:** Campos obligatorios claramente marcados y validados.
+- **Modo oscuro y traducción dinámica** (español/inglés).
+- **Contador de resultados y paginación.**
+- **Accesibilidad y usabilidad mejoradas.**
+
+---
+
+## Endpoints principales (API REST)
+
+### Animales
+
+| Método | Endpoint                | Descripción                        | Body/Params                  |
+|--------|-------------------------|------------------------------------|------------------------------|
+| GET    | `/animales`             | Listar animales paginados          | `page`, `page_size`          |
+| POST   | `/animales`             | Registrar nuevo animal             | JSON: nombre, fechas, ids    |
+| PUT    | `/animales/{id}`        | Actualizar animal                  | JSON: nombre, fechas, ids    |
+| DELETE | `/animales/{id}`        | Eliminar animal                    |                              |
+
+### Cuidadores
+
+| Método | Endpoint                | Descripción                        |
+|--------|-------------------------|------------------------------------|
+| GET    | `/cuidadores`           | Listar cuidadores                  |
+| GET    | `/cuidadores/{id}`      | Obtener cuidador por ID            |
+| POST   | `/cuidadores`           | Crear cuidador                     |
+| PUT    | `/cuidadores/{id}`      | Actualizar cuidador                |
+| DELETE | `/cuidadores/{id}`      | Eliminar cuidador                  |
+
+### Hábitats y Especies
+
+| Método | Endpoint                | Descripción                        |
+|--------|-------------------------|------------------------------------|
+| GET    | `/habitats`             | Listar hábitats                    |
+| GET    | `/especies`             | Listar especies                    |
+
+---
+
+## Ejemplo de request/response
+
+**Registrar animal (POST /animales):**
+```json
+{
+  "nombre": "León",
+  "fecha_nacimiento": "2020-05-01",
+  "cuidador_id": 1,
+  "habitat_id": 2,
+  "especie_id": 3
+}
+```
+
+**Respuesta:**
+```json
+{
+  "id": 10,
+  "nombre": "León",
+  "fecha_nacimiento": "2020-05-01",
+  "cuidador_id": 1,
+  "habitat_id": 2,
+  "especie_id": 3
+}
+```
+
+---
+
+## Validaciones y buenas prácticas
+
+- **Campos obligatorios** marcados visualmente y validados en frontend y backend.
+- **Integridad referencial**: no se pueden asignar IDs inexistentes.
+- **Mensajes de error claros** y accesibles.
+- **Accesibilidad**: formularios compatibles con lectores de pantalla.
+- **Seguridad**: uso de Pydantic, SQLAlchemy y validaciones estrictas.
+
+---
+
+## Créditos y equipo
+
+- **Anderson González** – Product Owner & Developer ([GitHub](https://github.com/Albonire))
+- **Mateo Orduz** – Scrum Master ([GitHub](https://github.com/mateo739))
+- **Kevin Madrid** – Development Team ([GitHub](https://github.com/Kevin698-star))
 
 ---
 
 ## Contribuciones
-Las contribuciones son bienvenidas. Por favor, abre un *issue* o crea un *pull request* con tus sugerencias.
 
----
+Las contribuciones son bienvenidas.  
+Por favor, abre un *issue* o crea un *pull request* con tus sugerencias.
 
