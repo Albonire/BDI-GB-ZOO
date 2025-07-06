@@ -226,6 +226,41 @@ body.dark-mode {
 .dark-mode .table td, .dark-mode .table th {
     border-color: var(--dark-border-color);
 }
+
+/* --- ESTILOS PARA EL CONTADOR DE RESULTADOS EN MODO OSCURO --- */
+.dark-mode .text-muted {
+    color: var(--dark-text-color) !important;
+}
+
+.dark-mode #contadorResultados {
+    color: var(--dark-text-color) !important;
+}
+
+/* --- ANULAR CLASE TEXT-MUTED EN MODO OSCURO --- */
+.dark-mode .text-muted {
+    color: #e0e0e0 !important;
+}
+
+/* --- ESTILOS PARA ICONOS DE GITHUB EN MODO OSCURO --- */
+.dark-mode .btn-outline-dark {
+    color: #e0e0e0 !important;
+    border-color: #e0e0e0 !important;
+}
+
+.dark-mode .btn-outline-dark:hover {
+    color: #1a1a1a !important;
+    background-color: #e0e0e0 !important;
+    border-color: #e0e0e0 !important;
+}
+
+/* --- ICONOS DE GITHUB ESPECÍFICAMENTE --- */
+.dark-mode .btn-outline-dark .bi-github {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode .btn-outline-dark:hover .bi-github {
+    color: #1a1a1a !important;
+}
 </style>
 </head>
 <body class="dark-mode">
@@ -368,7 +403,7 @@ body.dark-mode {
                         <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/img/anderson.jpg?raw=true" class="card-img-top" alt="Team member photo">
                         <div class="card-body">
                             <h5 class="card-title" data-lang="member-1-name">Anderson González</h5>
-                            <p class="card-text" data-lang="role-product-owner">Product Owner & Developer</p>
+                            <p class="card-text" data-lang="role-product-owner">Product Owner & Developer/p>
                             <div class="d-flex justify-content-center">
                                 <a href="https://www.linkedin.com/in/anderson-gonzaleza21/" class="btn btn-outline-primary mx-1" target="_blank"><i class="bi bi-linkedin"></i></a>
                                 <a href="https://github.com/Albonire" class="btn btn-outline-dark mx-1" target="_blank"><i class="bi bi-github"></i></a>
@@ -480,10 +515,10 @@ body.dark-mode {
     // --- Translations Dictionary ---
     const translations = {
         en: {
-            "nav-home": "Home", "nav-database": "Database", "nav-team": "Team", "language": "Language", "theme": "Theme", "welcome-title": "Welcome to ZOO-BDI", "welcome-subtitle": "Discover the world of nature", "manage-title": "Easily manage your animals", "manage-subtitle": "Intuitive and modern administration", "explore-title": "Explore the zoo database", "explore-subtitle": "Detailed and updated information", "database-title": "Zoo Database", "animal-register-title": "Animal Registration", "animal-register-text": "Add a new animal to the zoo's database.", "animal-register-button": "Register Animal", "animal-query-title": "Reload List", "animal-query-text": "Reload the list to see the most recent updates.", "animal-query-button": "Reload", "animal-list-title": "Animal List", "search-placeholder": "Search by name, keeper or species...", "clear-search-button": "Clear", "clear-button-text": "Clear", "table-id": "ID", "table-name": "Name", "table-birthdate": "Birth Date", "table-keeper": "Keeper", "table-habitat": "Habitat", "table-species": "Species", "table-actions": "Actions", "team-title": "Our Team", "member-1-name": "Anderson González", "role-product-owner": "Product Owner", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "member-3-name": "Kevin Madrid", "role-dev-team": "Development Team", "carousel-prev": "Previous", "carousel-next": "Next", "modal-register-title": "Register Animal", "form-name": "Name", "form-birthdate": "Birth Date", "form-keeper": "Keeper", "form-habitat": "Habitat", "form-species": "Species", "select-keeper": "Select a keeper...", "select-habitat": "Select a habitat...", "select-species": "Select a species...", "form-register-btn": "Register", "modal-update-title": "Update Animal", "form-update-btn": "Update", "modal-delete-title": "Delete Animal", "form-cancel-btn": "Cancel", "form-delete-btn": "Delete", "delete-confirm-text": "Are you sure you want to delete", "results-found": "result(s) found", "total-animals": "Total animals"
+            "nav-home": "Home", "nav-database": "Database", "nav-team": "Team", "language": "Language", "theme": "Theme", "welcome-title": "Welcome to ZOO-BDI", "welcome-subtitle": "Discover the world of nature", "manage-title": "Easily manage your animals", "manage-subtitle": "Intuitive and modern administration", "explore-title": "Explore the zoo database", "explore-subtitle": "Detailed and updated information", "database-title": "Zoo Database", "animal-register-title": "Animal Registration", "animal-register-text": "Add a new animal to the zoo's database.", "animal-register-button": "Register Animal", "animal-query-title": "Reload List", "animal-query-text": "Reload the list to see the most recent updates.", "animal-query-button": "Reload", "animal-list-title": "Animal List", "search-placeholder": "Search by name, keeper or species...", "clear-search-button": "Clear", "clear-button-text": "Clear", "table-id": "ID", "table-name": "Name", "table-birthdate": "Birth Date", "table-keeper": "Keeper", "table-habitat": "Habitat", "table-species": "Species", "table-actions": "Actions", "team-title": "Our Team", "member-1-name": "Anderson González", "role-product-owner": "Product Owner & Developer", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "member-3-name": "Kevin Madrid", "role-dev-team": "Development Team", "carousel-prev": "Previous", "carousel-next": "Next", "modal-register-title": "Register Animal", "form-name": "Name", "form-birthdate": "Birth Date", "form-keeper": "Keeper", "form-habitat": "Habitat", "form-species": "Species", "select-keeper": "Select a keeper...", "select-habitat": "Select a habitat...", "select-species": "Select a species...", "form-register-btn": "Register", "modal-update-title": "Update Animal", "form-update-btn": "Update", "modal-delete-title": "Delete Animal", "form-cancel-btn": "Cancel", "form-delete-btn": "Delete", "delete-confirm-text": "Are you sure you want to delete", "results-found": "result(s) found", "total-animals": "Total animals", "counter-total": "Total animals", "counter-results": "result(s) found"
         },
         es: {
-            "nav-home": "Inicio", "nav-database": "Base de Datos", "nav-team": "Equipo", "language": "Idioma", "theme": "Tema", "welcome-title": "Bienvenidos a ZOO-BDI", "welcome-subtitle": "Descubre el mundo de la naturaleza", "manage-title": "Gestiona tus animales fácilmente", "manage-subtitle": "Administración intuitiva y moderna", "explore-title": "Explora la base de datos del zoológico", "explore-subtitle": "Información detallada y actualizada", "database-title": "Base de Datos del Zoológico", "animal-register-title": "Registro de Animales", "animal-register-text": "Añade un nuevo animal a la base de datos.", "animal-register-button": "Registrar Animal", "animal-query-title": "Recargar Lista", "animal-query-text": "Recarga la lista para ver los datos más recientes.", "animal-query-button": "Recargar", "animal-list-title": "Lista de Animales", "search-placeholder": "Buscar por nombre, cuidador o especie...", "clear-search-button": "Limpiar", "clear-button-text": "Limpiar", "table-id": "ID", "table-name": "Nombre", "table-birthdate": "Fecha de Nacimiento", "table-keeper": "Cuidador", "table-habitat": "Hábitat", "table-species": "Especie", "table-actions": "Acciones", "team-title": "Nuestro Equipo", "member-1-name": "Anderson González", "role-product-owner": "Product Owner", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "member-3-name": "Kevin Madrid", "role-dev-team": "Equipo de Desarrollo", "carousel-prev": "Anterior", "carousel-next": "Siguiente", "modal-register-title": "Registrar Animal", "form-name": "Nombre", "form-birthdate": "Fecha de Nacimiento", "form-keeper": "Cuidador", "form-habitat": "Hábitat", "form-species": "Especie", "select-keeper": "Seleccionar cuidador...", "select-habitat": "Seleccionar hábitat...", "select-species": "Seleccionar especie...", "form-register-btn": "Registrar", "modal-update-title": "Actualizar Animal", "form-update-btn": "Actualizar", "modal-delete-title": "Eliminar Animal", "form-cancel-btn": "Cancelar", "form-delete-btn": "Eliminar", "delete-confirm-text": "¿Estás seguro de que quieres eliminar a", "results-found": "resultado(s) encontrado(s)", "total-animals": "Animales en total"
+            "nav-home": "Inicio", "nav-database": "Base de Datos", "nav-team": "Equipo", "language": "Idioma", "theme": "Tema", "welcome-title": "Bienvenidos a ZOO-BDI", "welcome-subtitle": "Descubre el mundo de la naturaleza", "manage-title": "Gestiona tus animales fácilmente", "manage-subtitle": "Administración intuitiva y moderna", "explore-title": "Explora la base de datos del zoológico", "explore-subtitle": "Información detallada y actualizada", "database-title": "Base de Datos del Zoológico", "animal-register-title": "Registro de Animales", "animal-register-text": "Añade un nuevo animal a la base de datos.", "animal-register-button": "Registrar Animal", "animal-query-title": "Recargar Lista", "animal-query-text": "Recarga la lista para ver los datos más recientes.", "animal-query-button": "Recargar", "animal-list-title": "Lista de Animales", "search-placeholder": "Buscar por nombre, cuidador o especie...", "clear-search-button": "Limpiar", "clear-button-text": "Limpiar", "table-id": "ID", "table-name": "Nombre", "table-birthdate": "Fecha de Nacimiento", "table-keeper": "Cuidador", "table-habitat": "Hábitat", "table-species": "Especie", "table-actions": "Acciones", "team-title": "Nuestro Equipo", "member-1-name": "Anderson González", "role-product-owner": "Product Owner & Developer", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "member-3-name": "Kevin Madrid", "role-dev-team": "Equipo de Desarrollo", "carousel-prev": "Anterior", "carousel-next": "Siguiente", "modal-register-title": "Registrar Animal", "form-name": "Nombre", "form-birthdate": "Fecha de Nacimiento", "form-keeper": "Cuidador", "form-habitat": "Hábitat", "form-species": "Especie", "select-keeper": "Seleccionar cuidador...", "select-habitat": "Seleccionar hábitat...", "select-species": "Seleccionar especie...", "form-register-btn": "Registrar", "modal-update-title": "Actualizar Animal", "form-update-btn": "Actualizar", "modal-delete-title": "Eliminar Animal", "form-cancel-btn": "Cancelar", "form-delete-btn": "Eliminar", "delete-confirm-text": "¿Estás seguro de que quieres eliminar a", "results-found": "resultado(s) encontrado(s)", "total-animals": "Animales en total", "counter-total": "Animales en total", "counter-results": "resultado(s) encontrado(s)"
         }
     };
 
