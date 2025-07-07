@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, text
 from src.app.database.database import get_db, Base
 from src.app.routers import animales, cuidadores, especies, habitats
 from src.app.config import settings
+from init_sample_data import insert_sample_data
 
 # Importar todos los modelos para que SQLAlchemy los registre
 from src.app.models import (
@@ -67,6 +68,21 @@ def init_database():
     except Exception as e:
         return {
             "error": f"Error al inicializar la base de datos: {str(e)}"
+        }
+
+@app.post("/insert-sample-data")
+def insert_sample_data_endpoint():
+    """Endpoint para insertar datos de prueba"""
+    try:
+        insert_sample_data()
+        return {
+            "message": "Datos de prueba insertados correctamente",
+            "status": "success"
+        }
+    except Exception as e:
+        return {
+            "error": f"Error al insertar datos de prueba: {str(e)}",
+            "status": "error"
         }
 
 if __name__ == "__main__":
