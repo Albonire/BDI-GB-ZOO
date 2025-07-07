@@ -2,10 +2,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from src.app.database.db_conf import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
+from src.app.config import settings
 
-# Configuración del motor de la base de datos
-DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# Configuración del motor de la base de datos usando settings
+DATABASE_URL = settings.database_url
 
 print(f"Intentando conectar a: {DATABASE_URL}")  # Debug (quita esto en producción)
 
