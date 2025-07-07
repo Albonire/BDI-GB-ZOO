@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from src.app.database.database import Base
 
-class Familia(Base):
+class FamiliaModel(Base):
     __tablename__ = "familia"
     __table_args__ = {"schema": "animals"}
 
