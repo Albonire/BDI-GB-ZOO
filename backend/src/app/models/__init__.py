@@ -6,6 +6,7 @@ from src.app.models.animales import AnimalesModel
 from src.app.models.especialidad import EspecialidadModel
 from src.app.models.cuidador import CuidadorModel
 from src.app.models.estado_conservacion import EstadoConservacionModel
+from src.app.models.familia import FamiliaModel
 
 # Asegúrate de que todos los modelos estén disponibles al importar desde models
 __all__ = [
@@ -16,5 +17,6 @@ __all__ = [
     "AnimalesModel",
     "EspecialidadModel",
     "CuidadorModel",
-    "EstadoConservacionModel"
+    "EstadoConservacionModel",
+    "FamiliaModel"
 ]
