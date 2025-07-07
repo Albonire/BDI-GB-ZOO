@@ -1,10 +1,14 @@
-from pydantic import BaseSettings
+from pydantic import BaseModel, ConfigDict
+import os
 
-class Settings(BaseSettings):
+class Settings(BaseModel):
     database_url: str
     secret_key: str
 
-    class Config:
-        env_file = ".env"  # Solo para desarrollo local
+    model_config = ConfigDict(env_file=".env")  # Solo para desarrollo local
 
-settings = Settings() 
+# Crear instancia de settings desde variables de entorno
+settings = Settings(
+    database_url=os.getenv("DATABASE_URL", ""),
+    secret_key=os.getenv("SECRET_KEY", "")
+) 

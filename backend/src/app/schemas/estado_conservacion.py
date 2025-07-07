@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from src.app.database.database import Base
@@ -14,6 +14,4 @@ class EstadoConservacionCreate(EstadoConservacionBase):
 class EstadoConservacion(EstadoConservacionBase):
     id: int
 
-    class Config:
-        from_attributes = True
-        populate_by_name = True
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)

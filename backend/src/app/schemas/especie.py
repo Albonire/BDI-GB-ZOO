@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from src.app.schemas.familia import Familia
 from src.app.schemas.estado_conservacion import EstadoConservacion
@@ -20,12 +20,10 @@ class EspecieAnimal(BaseModel):
     familia: Optional[Familia]
     estado_conservacion: Optional[EstadoConservacion]
 
-    class Config:
-        from_attributes = True
-        populate_by_name = True
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
 class EspecieDropDown(BaseModel):
     id: int
     nombre: str
-    class Config:
-        from_attributes = True
+    
+    model_config = ConfigDict(from_attributes=True)

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from src.app.schemas.ubicacion import Ubicacion
 from src.app.schemas.clima import Clima
@@ -23,8 +23,7 @@ class HabitatUpdate(HabitatBase):
 class Habitat(HabitatBase):
     id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class HabitatAnimal(BaseModel):
     id: int
@@ -32,15 +31,12 @@ class HabitatAnimal(BaseModel):
     ubicacion: Optional[Ubicacion]
     clima: Optional[Clima]
 
-    class Config:
-        from_attributes = True
-        populate_by_name = True
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
 class HabitatDropDown(BaseModel):
     id: int
     nombre: str
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
         

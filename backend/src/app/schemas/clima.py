@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 class ClimaBase(BaseModel):
     nombre: str
@@ -9,6 +9,4 @@ class ClimaCreate(ClimaBase):
 class Clima(ClimaBase):
     id: int
 
-    class Config:
-        from_attributes = True
-        populate_by_name = True
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)

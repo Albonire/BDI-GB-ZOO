@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 from decimal import Decimal
 from typing import Optional
@@ -22,20 +22,17 @@ class CuidadorUpdate(BaseModel):
 class CuidadorSchema(CuidadorBase):
     id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class CuidadorAnimal(BaseModel):
     id: int
     nombre: str | None
     especialidad: Especialidad
 
-    class Config:
-        from_attributes = True
-        populate_by_name = True
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
 
 class CuidadorDropDown(BaseModel):
     id: int
     nombre: str | None
-    class Config:
-        from_attributes = True
+    
+    model_config = ConfigDict(from_attributes=True)

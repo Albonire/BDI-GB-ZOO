@@ -1,5 +1,5 @@
 # app/schemas/animales.py
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from datetime import date
 from typing import Optional
 
@@ -18,8 +18,7 @@ class AnimalesGetEndpoint(AnimalesBase):
     habitat_id: Optional[int] = None
     especie_id: Optional[int] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class AnimalesPaginatedResponse(BaseModel):
     items: list[AnimalesGetEndpoint]
