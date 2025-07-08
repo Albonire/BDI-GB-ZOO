@@ -261,6 +261,80 @@ body.dark-mode {
 .dark-mode .btn-outline-dark:hover .bi-github {
     color: #1a1a1a !important;
 }
+
+/* Estilos personalizados para los toggles */
+.customCheckBoxHolder {
+  margin: 5px;
+  display: flex;
+}
+.customCheckBox {
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 2px 8px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 0.7);
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: color, background-color, box-shadow;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
+  outline: none;
+  justify-content: center;
+  min-width: 55px;
+  font-family: 'Libre Baskerville', serif;
+}
+.customCheckBox:hover {
+  background-color: #2c2c2c;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+}
+.customCheckBox .inner {
+  font-size: 18px;
+  font-weight: 900;
+  pointer-events: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: transform;
+  transform: translateY(0px);
+}
+.customCheckBox:hover .inner {
+  transform: translateY(-2px);
+}
+.customCheckBoxWrapper:first-of-type .customCheckBox {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: 0px;
+}
+.customCheckBoxWrapper:last-of-type .customCheckBox {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-left: 0px;
+}
+.customCheckBoxInput {
+  display: none;
+}
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
+  background-color: #2d6737;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+}
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
+  transform: translateY(-2px);
+}
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox:hover {
+  background-color: #34723f;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
+}
+.customCheckBoxWrapper .customCheckBox:hover .inner {
+  transform: translateY(-2px);
+}
 </style>
 </head>
 <body class="dark-mode">
@@ -279,14 +353,22 @@ body.dark-mode {
                     <li class="nav-item"><a class="nav-link" href="#baseDatos" data-lang="nav-database">Database</a></li>
                     <li class="nav-item"><a class="nav-link" href="#equipo" data-lang="nav-team">Team</a></li>
                 </ul>
-                <div class="dropdown ms-lg-3">
-                    <button class="btn btn-outline-light" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false" title="Menu">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
-                        <li><button class="dropdown-item" type="button" id="toggleLanguage"><i class="bi bi-translate"></i> <span data-lang="language">Language</span></button></li>
-                        <li><button class="dropdown-item" type="button" id="toggleTheme"><i class="bi bi-moon-stars-fill" id="themeIcon"></i> <span data-lang="theme">Theme</span></button></li>
-                    </ul>
+                <!-- Nuevo menú hamburguesa con toggles personalizados -->
+                <div class="customCheckBoxHolder ms-lg-3" style="font-family: 'Libre Baskerville', serif;">
+                    <!-- Toggle Idioma -->
+                    <input type="checkbox" id="toggleLanguageCustom" class="customCheckBoxInput">
+                    <div class="customCheckBoxWrapper">
+                        <label class="customCheckBox" for="toggleLanguageCustom" tabindex="0">
+                            <span class="inner" id="langToggleLabel">ES</span>
+                        </label>
+                    </div>
+                    <!-- Toggle Tema -->
+                    <input type="checkbox" id="toggleThemeCustom" class="customCheckBoxInput" checked>
+                    <div class="customCheckBoxWrapper">
+                        <label class="customCheckBox" for="toggleThemeCustom" tabindex="0">
+                            <span class="inner" id="themeToggleLabel"><i class="bi bi-moon-stars-fill"></i></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -329,7 +411,7 @@ body.dark-mode {
 
     <!-- Database Section -->
     <div id="baseDatos" class="container my-5">
-        <h2 class="text-center mb-4" data-lang="database-title">Zoo Database <img src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="Postgres" width="40" height="40"></h2>
+        <h2 class="text-center mb-4" data-lang="database-title">Zoo Database </h2>
         <div class="row justify-content-center g-4">
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 text-center">
@@ -590,21 +672,21 @@ body.dark-mode {
         }
     };
 
-    let currentLang = 'en';
+    window.currentLang = 'en';
     const API_BASE_URL = 'https://bdi-gb-zoo-backend.onrender.com';
 
-    // --- Core Functions ---
     function updateLanguage() {
+        console.log('updateLanguage:', window.currentLang);
         document.querySelectorAll('[data-lang]').forEach(el => {
             const key = el.getAttribute('data-lang');
-            if (translations[currentLang][key]) {
-                el.textContent = translations[currentLang][key];
+            if (translations[window.currentLang][key]) {
+                el.textContent = translations[window.currentLang][key];
             }
         });
         document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
             const key = el.getAttribute('data-lang-placeholder');
-            if (translations[currentLang][key]) {
-                el.placeholder = translations[currentLang][key];
+            if (translations[window.currentLang][key]) {
+                el.placeholder = translations[window.currentLang][key];
             }
         });
     }
@@ -652,7 +734,7 @@ body.dark-mode {
 
     function populateSelect(selectId, data, placeholderKey) {
         const select = document.getElementById(selectId);
-        select.innerHTML = `<option value="">${translations[currentLang][placeholderKey]}</option>`;
+        select.innerHTML = `<option value="">${translations[window.currentLang][placeholderKey]}</option>`;
         data.forEach(item => {
             select.innerHTML += `<option value="${item.id}">${item.nombre}</option>`;
         });
@@ -744,9 +826,9 @@ body.dark-mode {
     function actualizarContadorResultados(cantidad, isSearch) {
         const contador = document.getElementById('contadorResultados');
         if (isSearch) {
-            contador.textContent = `${cantidad} ${translations[currentLang]['results-found']}`;
+            contador.textContent = `${cantidad} ${translations[window.currentLang]['results-found']}`;
         } else {
-            contador.textContent = `${cantidad} ${translations[currentLang]['total-animals']}`;
+            contador.textContent = `${cantidad} ${translations[window.currentLang]['total-animals']}`;
         }
     }
 
@@ -776,21 +858,56 @@ body.dark-mode {
         // Theme initialization
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            document.getElementById('themeIcon').classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
         } else {
-             document.getElementById('themeIcon').classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
+            document.body.classList.remove('dark-mode');
+        }
+
+        // Idioma por defecto: inglés
+        const langToggle = document.getElementById('toggleLanguageCustom');
+        const langLabel = document.getElementById('langToggleLabel');
+        langToggle.checked = false;
+        window.currentLang = 'en';
+        langLabel.textContent = 'EN';
+        updateLanguage();
+
+        // Tema por defecto: oscuro
+        const themeToggle = document.getElementById('toggleThemeCustom');
+        const themeLabel = document.getElementById('themeToggleLabel');
+        themeToggle.checked = false;
+        if (!themeToggle.checked) {
+            document.body.classList.add('dark-mode');
+            themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
         }
 
         await cargarDatosReferencia();
         refrescarTablaAnimales();
-        updateLanguage(); // Initial language set
 
         // Event Listeners
-        document.getElementById('toggleLanguage').addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'es' : 'en';
+        langToggle.addEventListener('change', function() {
+            if (this.checked) {
+                window.currentLang = 'es';
+                langLabel.textContent = 'ES';
+            } else {
+                window.currentLang = 'en';
+                langLabel.textContent = 'EN';
+            }
+            console.log('toggle:', window.currentLang);
             updateLanguage();
         });
-        document.getElementById('toggleTheme').addEventListener('click', toggleTheme);
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
+            } else {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
+            }
+        });
 
         // Modals opening
         document.getElementById('modalRegistrarAnimal').addEventListener('show.bs.modal', () => {
@@ -887,7 +1004,7 @@ body.dark-mode {
     
     function abrirModalEliminar(id, nombre) {
         const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEliminarAnimal'));
-        document.getElementById('confirmarEliminarTexto').textContent = `${translations[currentLang]['delete-confirm-text']} ${nombre}?`;
+        document.getElementById('confirmarEliminarTexto').textContent = `${translations[window.currentLang]['delete-confirm-text']} ${nombre}?`;
         document.getElementById('btnConfirmarEliminar').dataset.id = id;
         modal.show();
     }
