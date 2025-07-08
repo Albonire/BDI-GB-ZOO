@@ -193,18 +193,18 @@ def insert_sample_data():
             print("Insertando familias...")
             for nombre_cientifico, nombre_comun in familias_data:
                 conn.execute(text("""
-                    INSERT INTO animals.familia (nombre_cientifico, nombre_comun) 
+                    INSERT INTO animals.familia (nombrecientifico, nombrecomun) 
                     VALUES (:nombre_cientifico, :nombre_comun)
-                    ON CONFLICT (nombre_cientifico) DO NOTHING
+                    ON CONFLICT (nombrecientifico) DO NOTHING
                 """), {"nombre_cientifico": nombre_cientifico, "nombre_comun": nombre_comun})
             
             # Insertar estados de conservación
             print("Insertando estados de conservación...")
             for codigo, nombre, descripcion in estados_data:
                 conn.execute(text("""
-                    INSERT INTO animals.estado_conservacion (codigo, nombre, descripcion) 
+                    INSERT INTO animals.estado_conservacion (id, nombre, descripcion) 
                     VALUES (:codigo, :nombre, :descripcion)
-                    ON CONFLICT (codigo) DO NOTHING
+                    ON CONFLICT (id) DO NOTHING
                 """), {"codigo": codigo, "nombre": nombre, "descripcion": descripcion})
             
             # Insertar ubicaciones
