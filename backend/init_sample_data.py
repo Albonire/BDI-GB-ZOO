@@ -195,7 +195,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.familia (nombrecientifico, nombrecomun) 
                     VALUES (:nombre_cientifico, :nombre_comun)
-                    ON CONFLICT (nombrecientifico) DO NOTHING
                 """), {"nombre_cientifico": nombre_cientifico, "nombre_comun": nombre_comun})
             
             # Insertar estados de conservación
@@ -204,7 +203,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.estado_conservacion (id, nombre, descripcion) 
                     VALUES (:codigo, :nombre, :descripcion)
-                    ON CONFLICT (id) DO NOTHING
                 """), {"codigo": codigo, "nombre": nombre, "descripcion": descripcion})
             
             # Insertar ubicaciones
@@ -213,7 +211,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.ubicacion (nombre) 
                     VALUES (:nombre)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre})
             
             # Insertar climas
@@ -222,7 +219,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.clima (nombre) 
                     VALUES (:nombre)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre})
             
             # Insertar especialidades
@@ -231,7 +227,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.especialidad (nombre) 
                     VALUES (:nombre)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre})
             
             # Insertar cuidadores
@@ -241,7 +236,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.cuidador (nombre, especialidad_id) 
                     VALUES (:nombre, :especialidad_id)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre, "especialidad_id": especialidad_id})
             
             # Insertar especies
@@ -252,7 +246,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.especie (nombre, descripcion, estado_conservacion_id) 
                     VALUES (:nombre, :descripcion, :estado_id)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre, "descripcion": descripcion, "estado_id": estado_id})
             
             # Insertar hábitats
@@ -264,7 +257,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.habitat (nombre, descripcion, ubicacion_id, clima_id) 
                     VALUES (:nombre, :descripcion, :ubicacion_id, :clima_id)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {"nombre": nombre, "descripcion": descripcion, "ubicacion_id": ubicacion_id, "clima_id": clima_id})
             
             # Insertar animales
@@ -273,7 +265,6 @@ def insert_sample_data():
                 conn.execute(text("""
                     INSERT INTO animals.animales (nombre, fecha_nacimiento, cuidador_id, habitat_id, especie_id) 
                     VALUES (:nombre, :fecha_nacimiento, :cuidador_id, :habitat_id, :especie_id)
-                    ON CONFLICT (nombre) DO NOTHING
                 """), {
                     "nombre": nombre, 
                     "fecha_nacimiento": fecha_nacimiento, 
