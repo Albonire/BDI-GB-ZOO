@@ -11,333 +11,449 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary-bg: #E9E6E1;
-  --card-bg: #f8f9fa;
-  --text-color: #211D1E;
-  --accent-color: #8fbc8f;
-  --hover-color: #7caa7c;
-  --danger-color: #cc6666;
-  --danger-hover: #bb5555;
-  --almost-black: #1a1a1a;
-  --dark-primary-bg: #121212;
-  --dark-card-bg: #1e1e1e;
-  --dark-text-color: #e0e0e0;
-  --dark-accent-color: #6b8e6b;
-  --dark-hover-color: #597959;
-  --dark-border-color: #444;
-  --dark-modal-bg: #2c2c2c;
-  --subtle-hover-bg: rgba(255, 255, 255, 0.05);
-}
-
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  background-color: var(--primary-bg);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar {
-  background-color: var(--almost-black);
-}
-
-.carousel-item {
-  height: 50vh;
-  min-height: 400px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.carousel-caption {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-}
-
-.carousel-caption h2, .carousel-caption p {
-  color: white !important;
-}
-
-.chinese-symbol {
-  font-size: 2rem;
-  position: absolute;
-  opacity: 0.5;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
-.card {
-  background-color: var(--card-bg);
-  border: 1px solid #ddd;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.card-img-top {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 20px auto;
-  border-radius: 50%;
-  border: 4px solid var(--text-color);
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.btn-primary:hover {
-  background-color: var(--hover-color);
-  border-color: var(--hover-color);
-}
-
-.btn-danger {
-  background-color: var(--danger-color);
-  border-color: var(--danger-color);
-}
-
-.btn-danger:hover {
-  background-color: var(--danger-hover);
-  border-color: var(--danger-hover);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Libre Baskerville', serif;
-  color: var(--text-color);
-  font-weight: 700;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: var(--dark-primary-bg);
-  color: var(--dark-text-color);
-}
-
-.dark-mode .card {
-  background-color: var(--dark-card-bg);
-  color: var(--dark-text-color);
-  border-color: var(--dark-border-color);
-}
-
-.dark-mode .card-img-top {
-  border-color: var(--dark-accent-color);
-}
-
-.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
-  color: var(--dark-text-color);
-}
-
-.dark-mode .dropdown-menu {
-  background-color: var(--dark-card-bg);
-  border-color: var(--dark-border-color);
-}
-
-.dark-mode .dropdown-item {
-  color: var(--dark-text-color);
-}
-
-.dark-mode .dropdown-item:hover {
-  background-color: var(--dark-hover-color);
-}
-
-.dark-mode .modal-content {
-    background-color: var(--dark-modal-bg);
-    color: var(--dark-text-color);
-    border-color: var(--dark-border-color);
-}
-.dark-mode .modal-header, .dark-mode .modal-footer {
-    border-bottom-color: var(--dark-border-color);
-    border-top-color: var(--dark-border-color);
-}
-
-.dark-mode .form-control, .dark-mode .form-select {
-    background-color: var(--dark-card-bg);
-    color: var(--dark-text-color);
-    border-color: var(--dark-border-color);
-}
-.dark-mode .form-control:focus, .dark-mode .form-select:focus {
-    background-color: var(--dark-card-bg);
-    color: var(--dark-text-color);
-    border-color: var(--dark-accent-color);
-    box-shadow: 0 0 0 0.25rem rgba(107, 142, 107, 0.5);
-}
-.dark-mode .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-.dark-mode .input-group-text {
-    background-color: var(--dark-card-bg);
-    border-color: var(--dark-border-color);
-    color: var(--dark-text-color);
-}
-
-
-/* --- Custom Table Styles --- */
-.table-responsive {
-    border-radius: 8px;
+  :root {
+    --primary-bg: #E9E6E1;
+    --card-bg: #f8f9fa;
+    --text-color: #211D1E;
+    --accent-color: #8fbc8f;
+    --hover-color: #7caa7c;
+    --danger-color: #cc6666;
+    --danger-hover: #bb5555;
+    --almost-black: #1a1a1a;
+    --dark-primary-bg: #121212;
+    --dark-card-bg: #1e1e1e;
+    --dark-text-color: #e0e0e0;
+    --dark-accent-color: #6b8e6b;
+    --dark-hover-color: #597959;
+    --dark-border-color: #444;
+    --dark-modal-bg: #2c2c2c;
+    --subtle-hover-bg: rgba(255, 255, 255, 0.05);
+  }
+  
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar {
+    background-color: var(--almost-black);
+  }
+  
+  .carousel-item {
+    height: 50vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  /* --- ESTILOS ACTUALIZADOS Y FINALES --- */
+  
+  .carousel-caption {
+    display: none !important;
+  }
+  
+  .static-caption-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -120px;
+    /* --- CAMBIO: MARGEN INFERIOR COMO EL ORIGINAL --- */
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 10; 
+  }
+  
+  /* LIQUID GLASS STYLES */
+  .liquidGlass-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-.table thead th {
-  background-color: var(--accent-color);
-  color: #fff;
-  font-weight: 700;
-  border-bottom: 2px solid var(--hover-color);
-  font-size: 1.08rem;
-  vertical-align: middle;
-}
-.table tbody tr {
-    transition: background-color 0.2s ease-in-out;
-}
-.table tbody tr:hover {
-  background-color: #f1f1f1;
-}
-.table td {
-    vertical-align: middle;
-}
-.btn-action {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.9rem;
-}
-
-/* Dark Mode Table Styles */
-.dark-mode .table {
-  color: var(--dark-text-color);
-  background-color: var(--dark-card-bg);
-}
-.dark-mode .table thead th {
-  background-color: var(--dark-accent-color);
-  color: #fff;
-  border-color: var(--dark-hover-color);
-}
-.dark-mode .table tbody tr {
-  background-color: var(--dark-card-bg);
-  border-bottom: 1px solid var(--dark-border-color);
-}
-.dark-mode .table tbody tr:hover {
-  background-color: var(--subtle-hover-bg) !important;
-}
-.dark-mode .table td, .dark-mode .table th {
+    color: black;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  
+    /* --- CAMBIOS PARA ANCHO Y PADDING ORIGINAL --- */
+    width: 80%;
+    max-width: 900px;
+    padding: 1.5rem;
+    
+    min-height: 120px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .liquidGlass-wrapper, .liquidGlass-wrapper > div {
+      border-radius: 1.8rem;
+  }
+  
+  .liquidGlass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    backdrop-filter: blur(5px); 
+    filter: url(#glass-distortion);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  
+  .liquidGlass-tint {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35); 
+  }
+  
+  .liquidGlass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.15), 
+                inset -1px -1px 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .liquidGlass-text {
+    z-index: 3;
+    font-size: 1rem;
+  }
+  
+  .liquidGlass-text h2, .liquidGlass-text p {
+    color: white !important;
+    text-shadow: none;
+  }
+  
+  /* --- FIN DE ESTILOS ACTUALIZADOS --- */
+  
+  
+  .chinese-symbol {
+    font-size: 2rem;
+    position: absolute;
+    opacity: 0.5;
+    color: white;
+    text-shadow: 0 0 5px black;
+  }
+  
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .card-img-top {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 20px auto;
+    border-radius: 50%;
+    border: 4px solid var(--text-color);
+  }
+  
+  .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+  }
+  
+  .btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+  }
+  
+  .btn-danger:hover {
+    background-color: var(--danger-hover);
+    border-color: var(--danger-hover);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--text-color);
+    font-weight: 700;
+  }
+  
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: var(--dark-primary-bg);
+    color: var(--dark-text-color);
+  }
+  
+  .dark-mode .card {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text-color);
     border-color: var(--dark-border-color);
-}
-
-/* --- ESTILOS PARA EL CONTADOR DE RESULTADOS EN MODO OSCURO --- */
-.dark-mode .text-muted {
-    color: var(--dark-text-color) !important;
-}
-
-.dark-mode #contadorResultados {
-    color: var(--dark-text-color) !important;
-}
-
-/* --- ANULAR CLASE TEXT-MUTED EN MODO OSCURO --- */
-.dark-mode .text-muted {
-    color: #e0e0e0 !important;
-}
-
-/* --- ESTILOS PARA ICONOS DE GITHUB EN MODO OSCURO --- */
-.dark-mode .btn-outline-dark {
-    color: #e0e0e0 !important;
-    border-color: #e0e0e0 !important;
-}
-
-.dark-mode .btn-outline-dark:hover {
-    color: #1a1a1a !important;
-    background-color: #e0e0e0 !important;
-    border-color: #e0e0e0 !important;
-}
-
-/* --- ICONOS DE GITHUB ESPECÍFICAMENTE --- */
-.dark-mode .btn-outline-dark .bi-github {
-    color: #e0e0e0 !important;
-}
-
-.dark-mode .btn-outline-dark:hover .bi-github {
-    color: #1a1a1a !important;
-}
-
-/* Estilos personalizados para los toggles */
-.customCheckBoxHolder {
-  margin: 5px;
-  display: flex;
-}
-.customCheckBox {
-  width: fit-content;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  padding: 2px 8px;
-  background-color: rgba(0, 0, 0, 0.16);
-  border-radius: 0px;
-  color: rgba(255, 255, 255, 0.7);
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 300ms;
-  transition-property: color, background-color, box-shadow;
-  display: flex;
-  height: 1.6rem;
-  align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
-  outline: none;
-  justify-content: center;
-  min-width: 55px;
-  font-family: 'Libre Baskerville', serif;
-}
-.customCheckBox:hover {
-  background-color: #2c2c2c;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
-}
-.customCheckBox .inner {
-  font-size: 0.9rem;
-  font-weight: 850;
-  pointer-events: none;
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 300ms;
-  transition-property: transform;
-  transform: translateY(0.1rem);
-}
-.customCheckBox:hover .inner {
-  transform: translateY(-1px);
-}
-.customCheckBoxWrapper:first-of-type .customCheckBox {
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-right: 0px;
-}
-.customCheckBoxWrapper:last-of-type .customCheckBox {
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-  border-left: 0px;
-}
-.customCheckBoxInput {
-  display: none;
-}
-.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
-  background-color: #6B8E6B;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
-}
-.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
-  transform: translateY(-2px);
-}
-.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox:hover {
-  background-color: #34723f;
-  box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
-}
-.customCheckBoxWrapper .customCheckBox:hover .inner {
-  transform: translateY(-2px);
-}
-</style>
+  }
+  
+  .dark-mode .card-img-top {
+    border-color: var(--dark-accent-color);
+  }
+  
+  .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+    color: var(--dark-text-color);
+  }
+  
+  .dark-mode .dropdown-menu {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-color);
+  }
+  
+  .dark-mode .dropdown-item {
+    color: var(--dark-text-color);
+  }
+  
+  .dark-mode .dropdown-item:hover {
+    background-color: var(--dark-hover-color);
+  }
+  
+  .dark-mode .modal-content {
+      background-color: var(--dark-modal-bg);
+      color: var(--dark-text-color);
+      border-color: var(--dark-border-color);
+  }
+  .dark-mode .modal-header, .dark-mode .modal-footer {
+      border-bottom-color: var(--dark-border-color);
+      border-top-color: var(--dark-border-color);
+  }
+  
+  .dark-mode .form-control, .dark-mode .form-select {
+      background-color: var(--dark-card-bg);
+      color: var(--dark-text-color);
+      border-color: var(--dark-border-color);
+  }
+  .dark-mode .form-control:focus, .dark-mode .form-select:focus {
+      background-color: var(--dark-card-bg);
+      color: var(--dark-text-color);
+      border-color: var(--dark-accent-color);
+      box-shadow: 0 0 0 0.25rem rgba(107, 142, 107, 0.5);
+  }
+  .dark-mode .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+  }
+  .dark-mode .input-group-text {
+      background-color: var(--dark-card-bg);
+      border-color: var(--dark-border-color);
+      color: var(--dark-text-color);
+  }
+  
+  .table-responsive {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .table thead th {
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 2px solid var(--hover-color);
+    font-size: 1.08rem;
+    vertical-align: middle;
+  }
+  .table tbody tr {
+      transition: background-color 0.2s ease-in-out;
+  }
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  .table td {
+      vertical-align: middle;
+  }
+  .btn-action {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9rem;
+  }
+  
+  .dark-mode .table {
+    color: var(--dark-text-color);
+    background-color: var(--dark-card-bg);
+  }
+  .dark-mode .table thead th {
+    background-color: var(--dark-accent-color);
+    color: #fff;
+    border-color: var(--dark-hover-color);
+  }
+  .dark-mode .table tbody tr {
+    background-color: var(--dark-card-bg);
+    border-bottom: 1px solid var(--dark-border-color);
+  }
+  .dark-mode .table tbody tr:hover {
+    background-color: var(--subtle-hover-bg) !important;
+  }
+  .dark-mode .table td, .dark-mode .table th {
+      border-color: var(--dark-border-color);
+  }
+  
+  .dark-mode .text-muted {
+      color: var(--dark-text-color) !important;
+  }
+  
+  .dark-mode #contadorResultados {
+      color: var(--dark-text-color) !important;
+  }
+  
+  .dark-mode .text-muted {
+      color: #e0e0e0 !important;
+  }
+  
+  .dark-mode .btn-outline-dark {
+      color: #e0e0e0 !important;
+      border-color: #e0e0e0 !important;
+  }
+  
+  .dark-mode .btn-outline-dark:hover {
+      color: #1a1a1a !important;
+      background-color: #e0e0e0 !important;
+      border-color: #e0e0e0 !important;
+  }
+  
+  .dark-mode .btn-outline-dark .bi-github {
+      color: #e0e0e0 !important;
+  }
+  
+  .dark-mode .btn-outline-dark:hover .bi-github {
+      color: #1a1a1a !important;
+  }
+  
+  .customCheckBoxHolder {
+    margin: 5px;
+    display: flex; 
+  }
+  .customCheckBox {
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 2px 8px;
+    background-color: rgba(0, 0, 0, 0.16);
+    border-radius: 0px;
+    color: rgba(255, 255, 255, 0.7);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 300ms;
+    transition-property: color, background-color, box-shadow;
+    display: flex;
+    height: 1.6rem;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
+    outline: none;
+    justify-content: center;
+    min-width: 55px;
+    font-family: 'Libre Baskerville', serif;
+  }
+  .customCheckBox:hover {
+    background-color: #2c2c2c;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+  }
+  .customCheckBox .inner {
+    font-size: 0.9rem;
+    font-weight: 850;
+    pointer-events: none;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 300ms;
+    transition-property: transform;
+    transform: translateY(0.1rem);
+  }
+  .customCheckBox:hover .inner {
+    transform: translateY(-1px);
+  }
+  .customCheckBoxWrapper:first-of-type .customCheckBox {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-right: 0px;
+  }
+  .customCheckBoxWrapper:last-of-type .customCheckBox {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left: 0px;
+  }
+  .customCheckBoxInput {
+    display: none;
+  }
+  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
+    background-color: #6B8E6B;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+  }
+  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
+    transform: translateY(-2px);
+  }
+  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox:hover {
+    background-color: #34723f;
+    box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
+  }
+  .customCheckBoxWrapper .customCheckBox:hover .inner {
+    transform: translateY(-2px);
+  }
+  </style>
 </head>
 <body class="dark-mode">
+
+    <!-- SVG FILTER PARA EL EFECTO LIQUID GLASS -->
+    <svg style="display: none">
+      <filter
+        id="glass-distortion"
+        x="0%"
+        y="0%"
+        width="100%"
+        height="100%"
+        filterUnits="objectBoundingBox"
+      >
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.000 0.005"
+          numOctaves="1"
+          seed="17"
+          result="turbulence"
+        />
+        <feComponentTransfer in="turbulence" result="mapped">
+          <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+          <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+          <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting
+          in="softMap"
+          surfaceScale="5"
+          specularConstant="1"
+          specularExponent="100"
+          lighting-color="white"
+          result="specLight"
+        >
+          <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite
+          in="specLight"
+          operator="arithmetic"
+          k1="0"
+          k2="1"
+          k3="1"
+          k4="0"
+          result="litImage"
+        />
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="softMap"
+          scale="200"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        />
+      </filter>
+    </svg>
+
     <!-- Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid px-4">
@@ -353,16 +469,13 @@ body.dark-mode {
                     <li class="nav-item"><a class="nav-link" href="#baseDatos" data-lang="nav-database">Database</a></li>
                     <li class="nav-item"><a class="nav-link" href="#equipo" data-lang="nav-team">Team</a></li>
                 </ul>
-                <!-- Nuevo menú hamburguesa con toggles personalizados -->
                 <div class="customCheckBoxHolder ms-lg-3" style="font-family: 'Libre Baskerville', serif;">
-                    <!-- Toggle Idioma -->
                     <input type="checkbox" id="toggleLanguageCustom" class="customCheckBoxInput">
                     <div class="customCheckBoxWrapper">
                         <label class="customCheckBox" for="toggleLanguageCustom" tabindex="0">
                             <span class="inner" id="langToggleLabel">ES</span>
                         </label>
                     </div>
-                    <!-- Toggle Tema -->
                     <input type="checkbox" id="toggleThemeCustom" class="customCheckBoxInput" checked>
                     <div class="customCheckBoxWrapper">
                         <label class="customCheckBox" for="toggleThemeCustom" tabindex="0">
@@ -375,38 +488,45 @@ body.dark-mode {
     </nav>
 
     <!-- Slider -->
-    <div id="introCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+    <div id="introCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
         <div class="carousel-inner">
             <div class="carousel-item active" style="background-image: url('https://cdn.pixabay.com/photo/2014/05/21/20/58/flock-of-birds-350290_1280.jpg');">
                 <span class="chinese-symbol" style="top: 20px; left: 20px;">和</span><span class="chinese-symbol" style="bottom: 20px; right: 20px;">平</span>
-                <div class="d-flex h-100 align-items-center justify-content-center">
-                    <div class="carousel-caption">
-                        <h2 data-lang="welcome-title">Welcome to ZOO-BDI</h2>
-                        <p data-lang="welcome-subtitle">Discover the world of nature</p>
-                    </div>
+                <!-- El caption real está oculto pero su contenido será usado por JS -->
+                <div class="carousel-caption">
+                    <h2 data-lang="welcome-title">Welcome to ZOO-BDI</h2>
+                    <p data-lang="welcome-subtitle">Discover the world of nature</p>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url('https://cdn.pixabay.com/photo/2024/02/17/15/14/birds-8579528_960_720.jpg');">
                 <span class="chinese-symbol" style="top: 50px; left: 50px;">生</span><span class="chinese-symbol" style="bottom: 30px; right: 30px;">命</span>
-                <div class="d-flex h-100 align-items-center justify-content-center">
-                    <div class="carousel-caption">
-                        <h2 data-lang="manage-title">Easily manage your animals</h2>
-                        <p data-lang="manage-subtitle">Intuitive and modern administration</p>
-                    </div>
+                <div class="carousel-caption">
+                    <h2 data-lang="manage-title">Easily manage your animals</h2>
+                    <p data-lang="manage-subtitle">Intuitive and modern administration</p>
                 </div>
             </div>
             <div class="carousel-item" style="background-image: url('https://cdn.pixabay.com/photo/2023/05/24/18/32/ladybug-8015502_960_720.jpg');">
                 <span class="chinese-symbol" style="top: 40px; right: 40px;">自</span><span class="chinese-symbol" style="bottom: 20px; left: 20px;">然</span>
-                <div class="d-flex h-100 align-items-center justify-content-center">
-                    <div class="carousel-caption">
-                        <h2 data-lang="explore-title">Explore the zoo database</h2>
-                        <p data-lang="explore-subtitle">Detailed and updated information</p>
-                    </div>
+                <div class="carousel-caption">
+                    <h2 data-lang="explore-title">Explore the zoo database</h2>
+                    <p data-lang="explore-subtitle">Detailed and updated information</p>
                 </div>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#introCarousel" data-bs-slide="prev" title="Previous"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden" data-lang="carousel-prev">Previous</span></button>
         <button class="carousel-control-next" type="button" data-bs-target="#introCarousel" data-bs-slide="next" title="Next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden" data-lang="carousel-next">Next</span></button>
+    </div>
+
+    <!-- Contenedor estático para el caption con efecto Liquid Glass -->
+    <div class="static-caption-container">
+        <div class="liquidGlass-wrapper">
+            <div class="liquidGlass-effect"></div>
+            <div class="liquidGlass-tint"></div>
+            <div class="liquidGlass-shine"></div>
+            <div class="liquidGlass-text" id="static-caption-content">
+                <!-- El contenido se inyectará aquí con JavaScript -->
+            </div>
+        </div>
     </div>
 
     <!-- Database Section -->
@@ -436,6 +556,7 @@ body.dark-mode {
         </div>
     </div>
 
+    <!-- El resto de tu HTML permanece igual -->
     <!-- Animal Table -->
     <div class="container my-5">
       <h3 data-lang="animal-list-title">Animal List</h3>
@@ -855,6 +976,33 @@ body.dark-mode {
 
     // --- Event Listeners & Initializers ---
     document.addEventListener('DOMContentLoaded', async function() {
+
+        // --- NUEVO CÓDIGO PARA EL CAPTION ESTÁTICO ---
+        const carouselElement = document.getElementById('introCarousel');
+        const staticCaptionContainer = document.getElementById('static-caption-content');
+        
+        // Función para actualizar el contenido del caption estático
+        const updateCaption = (activeItem) => {
+            const caption = activeItem.querySelector('.carousel-caption');
+            if (caption) {
+                staticCaptionContainer.innerHTML = caption.innerHTML;
+            }
+        };
+
+        // Inicializar el caption con el contenido del primer slide
+        const initialItem = document.querySelector('#introCarousel .carousel-item.active');
+        if (initialItem) {
+            updateCaption(initialItem);
+        }
+        
+        // Añadir listener para cuando el carrusel termina de cambiar de slide
+        carouselElement.addEventListener('slid.bs.carousel', event => {
+            // event.relatedTarget es el nuevo item activo
+            updateCaption(event.relatedTarget);
+        });
+        // --- FIN DEL NUEVO CÓDIGO ---
+
+
         // Theme initialization
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
