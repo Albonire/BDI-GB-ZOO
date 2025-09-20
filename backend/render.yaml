@@ -1,3 +1,6 @@
+databases:
+  - name: dpg-d1m1hiripnbc73finsu0-a
+
 services:
   - type: web
     name: bdi-gb-zoo-backend
@@ -9,4 +12,8 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.4 
+        value: 3.11.4
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dpg-d1m1hiripnbc73finsu0-a
+          property: internalUrl
