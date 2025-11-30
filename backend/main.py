@@ -76,7 +76,7 @@ def insert_sample_data_endpoint():
     try:
         insert_sample_data()
         return {
-            "message": "Datos de prueba insertados correctamente",
+            "message": "Datos de prueba insertados correctamente (v2 - esquema animals)",
             "status": "success"
         }
     except Exception as e:
