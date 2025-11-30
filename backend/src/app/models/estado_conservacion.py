@@ -5,7 +5,7 @@ from src.app.database.database import Base
 
 class EstadoConservacionModel(Base):
     __tablename__ = "estado_conservacion"
-    __table_args__ = {"schema": "animals"}
+    # __table_args__ = {"schema": "animals"}  # Comentado para SQLite
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(50), nullable=False)

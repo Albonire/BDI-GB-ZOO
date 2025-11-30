@@ -1,446 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZOO-BDI</title>
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary-bg: #E9E6E1;
-    --card-bg: #f8f9fa;
-    --text-color: #211D1E;
-    --accent-color: #8fbc8f;
-    --hover-color: #7caa7c;
-    --danger-color: #cc6666;
-    --danger-hover: #bb5555;
-    --almost-black: #1a1a1a;
-    --dark-primary-bg: #121212;
-    --dark-card-bg: #1e1e1e;
-    --dark-text-color: #e0e0e0;
-    --dark-accent-color: #6b8e6b;
-    --dark-hover-color: #597959;
-    --dark-border-color: #444;
-    --dark-modal-bg: #2c2c2c;
-    --subtle-hover-bg: rgba(255, 255, 255, 0.05);
-  }
-  
-  body {
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: var(--primary-bg);
-    color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .navbar {
-    background-color: var(--almost-black);
-  }
-  
-  .carousel-item {
-    height: 50vh;
-    min-height: 400px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  /* --- ESTILOS ACTUALIZADOS Y FINALES --- */
-  
-  .carousel-caption {
-    display: none !important;
-  }
-  
-  .static-caption-container {
-    display: flex;
-    justify-content: center;
-    margin-top: -120px;
-    /* --- CAMBIO: MARGEN INFERIOR COMO EL ORIGINAL --- */
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 10; 
-  }
-  
-  /* LIQUID GLASS STYLES */
-  .liquidGlass-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    font-weight: 600;
-    overflow: hidden;
-    color: black;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
-  
-    /* --- CAMBIOS PARA ANCHO Y PADDING ORIGINAL --- */
-    width: 80%;
-    max-width: 900px;
-    padding: 1.5rem;
-    
-    min-height: 120px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .liquidGlass-wrapper, .liquidGlass-wrapper > div {
-      border-radius: 1.8rem;
-  }
-  
-  .liquidGlass-effect {
-    position: absolute;
-    z-index: 0;
-    inset: 0;
-    -webkit-backdrop-filter: blur(5px); /* Compatibilidad Safari/iOS */
-    backdrop-filter: blur(5px); 
-    filter: url(#glass-distortion);
-    overflow: hidden;
-    isolation: isolate;
-  }
-  
-  .liquidGlass-tint {
-    z-index: 1;
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35); 
-  }
-  
-  .liquidGlass-shine {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    overflow: hidden;
-    box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.15), 
-                inset -1px -1px 1px 0 rgba(255, 255, 255, 0.1);
-  }
-  
-  .liquidGlass-text {
-    z-index: 3;
-    font-size: 1rem;
-  }
-  
-  .liquidGlass-text h2, .liquidGlass-text p {
-    color: white !important;
-    text-shadow: none;
-  }
-  
-  /* --- FIN DE ESTILOS ACTUALIZADOS --- */
-  
-  
-  .chinese-symbol {
-    font-size: 2rem;
-    position: absolute;
-    opacity: 0.5;
-    color: white;
-    text-shadow: 0 0 5px black;
-  }
-  
-  .card {
-    background-color: var(--card-bg);
-    border: 1px solid #ddd;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-  }
-  
-  .card-img-top {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin: 20px auto;
-    border-radius: 50%;
-    border: 4px solid var(--text-color);
-  }
-  
-  .btn-primary {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-  }
-  
-  .btn-primary:hover {
-    background-color: var(--hover-color);
-    border-color: var(--hover-color);
-  }
-  
-  .btn-danger {
-    background-color: var(--danger-color);
-    border-color: var(--danger-color);
-  }
-  
-  .btn-danger:hover {
-    background-color: var(--danger-hover);
-    border-color: var(--danger-hover);
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Libre Baskerville', serif;
-    color: var(--text-color);
-    font-weight: 700;
-  }
-  
-  /* Dark Mode Styles */
-  body.dark-mode {
-    background-color: var(--dark-primary-bg);
-    color: var(--dark-text-color);
-  }
-  
-  .dark-mode .card {
-    background-color: var(--dark-card-bg);
-    color: var(--dark-text-color);
-    border-color: var(--dark-border-color);
-  }
-  
-  .dark-mode .card-img-top {
-    border-color: var(--dark-accent-color);
-  }
-  
-  .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
-    color: var(--dark-text-color);
-  }
-  
-  .dark-mode .dropdown-menu {
-    background-color: var(--dark-card-bg);
-    border-color: var(--dark-border-color);
-  }
-  
-  .dark-mode .dropdown-item {
-    color: var(--dark-text-color);
-  }
-  
-  .dark-mode .dropdown-item:hover {
-    background-color: var(--dark-hover-color);
-  }
-  
-  .dark-mode .modal-content {
-      background-color: var(--dark-modal-bg);
-      color: var(--dark-text-color);
-      border-color: var(--dark-border-color);
-  }
-  .dark-mode .modal-header, .dark-mode .modal-footer {
-      border-bottom-color: var(--dark-border-color);
-      border-top-color: var(--dark-border-color);
-  }
-  
-  .dark-mode .form-control, .dark-mode .form-select {
-      background-color: var(--dark-card-bg);
-      color: var(--dark-text-color);
-      border-color: var(--dark-border-color);
-  }
-  .dark-mode .form-control:focus, .dark-mode .form-select:focus {
-      background-color: var(--dark-card-bg);
-      color: var(--dark-text-color);
-      border-color: var(--dark-accent-color);
-      box-shadow: 0 0 0 0.25rem rgba(107, 142, 107, 0.5);
-  }
-  .dark-mode .btn-close {
-      filter: invert(1) grayscale(100%) brightness(200%);
-  }
-  .dark-mode .input-group-text {
-      background-color: var(--dark-card-bg);
-      border-color: var(--dark-border-color);
-      color: var(--dark-text-color);
-  }
-  
-  .table-responsive {
-      position: relative;
-      border-radius: 8px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      min-height: 200px;
-  }
-  .table-responsive table {
-      min-width: 700px; /* Ajusta según el número de columnas y contenido */
-  }
-  .table thead th {
-    background-color: var(--accent-color);
-    color: #fff;
-    font-weight: 700;
-    border-bottom: 2px solid var(--hover-color);
-    font-size: 1.08rem;
-    vertical-align: middle;
-  }
-  .table tbody tr {
-      transition: background-color 0.2s ease-in-out;
-  }
-  .table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  .table td {
-      vertical-align: middle;
-  }
-  .btn-action {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.9rem;
-  }
-  
-  .dark-mode .table {
-    color: var(--dark-text-color);
-    background-color: var(--dark-card-bg);
-  }
-  .dark-mode .table thead th {
-    background-color: var(--dark-accent-color);
-    color: #fff;
-    border-color: var(--dark-hover-color);
-  }
-  .dark-mode .table tbody tr {
-    background-color: var(--dark-card-bg);
-    border-bottom: 1px solid var(--dark-border-color);
-  }
-  .dark-mode .table tbody tr:hover {
-    background-color: var(--subtle-hover-bg) !important;
-  }
-  .dark-mode .table td, .dark-mode .table th {
-      border-color: var(--dark-border-color);
-  }
-  
-  .dark-mode .text-muted {
-      color: var(--dark-text-color) !important;
-  }
-  
-  .dark-mode #contadorResultados {
-      color: var(--dark-text-color) !important;
-  }
-  
-  .dark-mode .text-muted {
-      color: #e0e0e0 !important;
-  }
-  
-  .dark-mode .btn-outline-dark {
-      color: #e0e0e0 !important;
-      border-color: #e0e0e0 !important;
-  }
-  
-  .dark-mode .btn-outline-dark:hover {
-      color: #1a1a1a !important;
-      background-color: #e0e0e0 !important;
-      border-color: #e0e0e0 !important;
-  }
-  
-  .dark-mode .btn-outline-dark .bi-github {
-      color: #e0e0e0 !important;
-  }
-  
-  .dark-mode .btn-outline-dark:hover .bi-github {
-      color: #1a1a1a !important;
-  }
-  
-  .customCheckBoxHolder {
-    margin: 5px;
-    display: flex; 
-  }
-  .customCheckBox {
-    width: fit-content;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    padding: 2px 8px;
-    background-color: rgba(0, 0, 0, 0.16);
-    border-radius: 0px;
-    color: rgba(255, 255, 255, 0.7);
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 300ms;
-    transition-property: color, background-color, box-shadow;
-    display: flex;
-    height: 1.6rem;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
-    outline: none;
-    justify-content: center;
-    min-width: 55px;
-    font-family: 'Libre Baskerville', serif;
-  }
-  .customCheckBox:hover {
-    background-color: #2c2c2c;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
-  }
-  .customCheckBox .inner {
-    font-size: 0.9rem;
-    font-weight: 850;
-    pointer-events: none;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 300ms;
-    transition-property: transform;
-    transform: translateY(0.1rem);
-  }
-  .customCheckBox:hover .inner {
-    transform: translateY(-1px);
-  }
-  .customCheckBoxWrapper:first-of-type .customCheckBox {
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-    border-right: 0px;
-  }
-  .customCheckBoxWrapper:last-of-type .customCheckBox {
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    border-left: 0px;
-  }
-  .customCheckBoxInput {
-    display: none;
-  }
-  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
-    background-color: #6B8E6B;
-    color: white;
-    box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
-  }
-  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
-    transform: translateY(-2px);
-  }
-  .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox:hover {
-    background-color: #34723f;
-    box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
-  }
-  .customCheckBoxWrapper .customCheckBox:hover .inner {
-    transform: translateY(-2px);
-  }
-  /* Loader visual para la tabla */
-  .table-loader-overlay {
-      position: absolute;
-      inset: 0;
-      background-color: rgba(233, 230, 225, 0.85);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      border-radius: 8px;
-      transition: opacity 0.3s ease-in-out;
-  }
-  .table-loader-overlay .spinner-border {
-      width: 3.5rem;
-      height: 3.5rem;
-      color: var(--accent-color) !important;
-  }
-  .table-loader-overlay .loading-text {
-      color: var(--text-color);
-      font-weight: 600;
-      font-family: 'Libre Baskerville', serif;
-  }
-  .dark-mode .table-loader-overlay {
-      background-color: rgba(18, 18, 18, 0.9);
-  }
-  .dark-mode .table-loader-overlay .spinner-border {
-       color: var(--dark-accent-color) !important;
-  }
-  .dark-mode .table-loader-overlay .loading-text {
-      color: var(--dark-text-color);
-  }
-  </style>
-</head>
-<body class="dark-mode">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZOO-BDI</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-bg: #e9e6e1;
+        --card-bg: #f8f9fa;
+        --text-color: #211d1e;
+        --accent-color: #8fbc8f;
+        --hover-color: #7caa7c;
+        --danger-color: #cc6666;
+        --danger-hover: #bb5555;
+        --almost-black: #1a1a1a;
+        --dark-primary-bg: #121212;
+        --dark-card-bg: #1e1e1e;
+        --dark-text-color: #e0e0e0;
+        --dark-accent-color: #6b8e6b;
+        --dark-hover-color: #597959;
+        --dark-border-color: #444;
+        --dark-modal-bg: #2c2c2c;
+        --subtle-hover-bg: rgba(255, 255, 255, 0.05);
+      }
 
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .navbar {
+        background-color: var(--almost-black);
+      }
+
+      .carousel-item {
+        height: 50vh;
+        min-height: 400px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      /* --- ESTILOS ACTUALIZADOS Y FINALES --- */
+
+      .carousel-caption {
+        display: none !important;
+      }
+
+      .static-caption-container {
+        display: flex;
+        justify-content: center;
+        margin-top: -120px;
+        /* --- CAMBIO: MARGEN INFERIOR COMO EL ORIGINAL --- */
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* LIQUID GLASS STYLES */
+      .liquidGlass-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        overflow: hidden;
+        color: black;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+
+        /* --- CAMBIOS PARA ANCHO Y PADDING ORIGINAL --- */
+        width: 80%;
+        max-width: 900px;
+        padding: 1.5rem;
+
+        min-height: 120px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .liquidGlass-wrapper,
+      .liquidGlass-wrapper > div {
+        border-radius: 1.8rem;
+      }
+
+      .liquidGlass-effect {
+        position: absolute;
+        z-index: 0;
+        inset: 0;
+        -webkit-backdrop-filter: blur(5px); /* Compatibilidad Safari/iOS */
+        backdrop-filter: blur(5px);
+        filter: url(#glass-distortion);
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .liquidGlass-tint {
+        z-index: 1;
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+      }
+
+      .liquidGlass-shine {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        overflow: hidden;
+        box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.15),
+          inset -1px -1px 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .liquidGlass-text {
+        z-index: 3;
+        font-size: 1rem;
+      }
+
+      .liquidGlass-text h2,
+      .liquidGlass-text p {
+        color: white !important;
+        text-shadow: none;
+      }
+
+      /* --- FIN DE ESTILOS ACTUALIZADOS --- */
+
+      .chinese-symbol {
+        font-size: 2rem;
+        position: absolute;
+        opacity: 0.5;
+        color: white;
+        text-shadow: 0 0 5px black;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid #ddd;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+      }
+
+      .card-img-top {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin: 20px auto;
+        border-radius: 50%;
+        border: 4px solid var(--text-color);
+      }
+
+      .btn-primary {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--hover-color);
+        border-color: var(--hover-color);
+      }
+
+      .btn-danger {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+      }
+
+      .btn-danger:hover {
+        background-color: var(--danger-hover);
+        border-color: var(--danger-hover);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Libre Baskerville", serif;
+        color: var(--text-color);
+        font-weight: 700;
+      }
+
+      /* Dark Mode Styles */
+      body.dark-mode {
+        background-color: var(--dark-primary-bg);
+        color: var(--dark-text-color);
+      }
+
+      .dark-mode .card {
+        background-color: var(--dark-card-bg);
+        color: var(--dark-text-color);
+        border-color: var(--dark-border-color);
+      }
+
+      .dark-mode .card-img-top {
+        border-color: var(--dark-accent-color);
+      }
+
+      .dark-mode h1,
+      .dark-mode h2,
+      .dark-mode h3,
+      .dark-mode h4,
+      .dark-mode h5,
+      .dark-mode h6 {
+        color: var(--dark-text-color);
+      }
+
+      .dark-mode .dropdown-menu {
+        background-color: var(--dark-card-bg);
+        border-color: var(--dark-border-color);
+      }
+
+      .dark-mode .dropdown-item {
+        color: var(--dark-text-color);
+      }
+
+      .dark-mode .dropdown-item:hover {
+        background-color: var(--dark-hover-color);
+      }
+
+      .dark-mode .modal-content {
+        background-color: var(--dark-modal-bg);
+        color: var(--dark-text-color);
+        border-color: var(--dark-border-color);
+      }
+      .dark-mode .modal-header,
+      .dark-mode .modal-footer {
+        border-bottom-color: var(--dark-border-color);
+        border-top-color: var(--dark-border-color);
+      }
+
+      .dark-mode .form-control,
+      .dark-mode .form-select {
+        background-color: var(--dark-card-bg);
+        color: var(--dark-text-color);
+        border-color: var(--dark-border-color);
+      }
+      .dark-mode .form-control:focus,
+      .dark-mode .form-select:focus {
+        background-color: var(--dark-card-bg);
+        color: var(--dark-text-color);
+        border-color: var(--dark-accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(107, 142, 107, 0.5);
+      }
+      .dark-mode .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+      .dark-mode .input-group-text {
+        background-color: var(--dark-card-bg);
+        border-color: var(--dark-border-color);
+        color: var(--dark-text-color);
+      }
+
+      .table-responsive {
+        position: relative;
+        border-radius: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        min-height: 200px;
+      }
+      .table-responsive table {
+        min-width: 700px; /* Ajusta según el número de columnas y contenido */
+      }
+      .table thead th {
+        background-color: var(--accent-color);
+        color: #fff;
+        font-weight: 700;
+        border-bottom: 2px solid var(--hover-color);
+        font-size: 1.08rem;
+        vertical-align: middle;
+      }
+      .table tbody tr {
+        transition: background-color 0.2s ease-in-out;
+      }
+      .table tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+      .table td {
+        vertical-align: middle;
+      }
+      .btn-action {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .dark-mode .table {
+        color: var(--dark-text-color);
+        background-color: var(--dark-card-bg);
+      }
+      .dark-mode .table thead th {
+        background-color: var(--dark-accent-color);
+        color: #fff;
+        border-color: var(--dark-hover-color);
+      }
+      .dark-mode .table tbody tr {
+        background-color: var(--dark-card-bg);
+        border-bottom: 1px solid var(--dark-border-color);
+      }
+      .dark-mode .table tbody tr:hover {
+        background-color: var(--subtle-hover-bg) !important;
+      }
+      .dark-mode .table td,
+      .dark-mode .table th {
+        border-color: var(--dark-border-color);
+      }
+
+      .dark-mode .text-muted {
+        color: var(--dark-text-color) !important;
+      }
+
+      .dark-mode #contadorResultados {
+        color: var(--dark-text-color) !important;
+      }
+
+      .dark-mode .text-muted {
+        color: #e0e0e0 !important;
+      }
+
+      .dark-mode .btn-outline-dark {
+        color: #e0e0e0 !important;
+        border-color: #e0e0e0 !important;
+      }
+
+      .dark-mode .btn-outline-dark:hover {
+        color: #1a1a1a !important;
+        background-color: #e0e0e0 !important;
+        border-color: #e0e0e0 !important;
+      }
+
+      .dark-mode .btn-outline-dark .bi-github {
+        color: #e0e0e0 !important;
+      }
+
+      .dark-mode .btn-outline-dark:hover .bi-github {
+        color: #1a1a1a !important;
+      }
+
+      .customCheckBoxHolder {
+        margin: 5px;
+        display: flex;
+      }
+      .customCheckBox {
+        width: fit-content;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        padding: 2px 8px;
+        background-color: rgba(0, 0, 0, 0.16);
+        border-radius: 0px;
+        color: rgba(255, 255, 255, 0.7);
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-duration: 300ms;
+        transition-property: color, background-color, box-shadow;
+        display: flex;
+        height: 1.6rem;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset,
+          rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
+        outline: none;
+        justify-content: center;
+        min-width: 55px;
+        font-family: "Libre Baskerville", serif;
+      }
+      .customCheckBox:hover {
+        background-color: #2c2c2c;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset,
+          rgba(255, 255, 255, 0.17) 0px -1px 1px 0px,
+          rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+      }
+      .customCheckBox .inner {
+        font-size: 0.9rem;
+        font-weight: 850;
+        pointer-events: none;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-duration: 300ms;
+        transition-property: transform;
+        transform: translateY(0.1rem);
+      }
+      .customCheckBox:hover .inner {
+        transform: translateY(-1px);
+      }
+      .customCheckBoxWrapper:first-of-type .customCheckBox {
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        border-right: 0px;
+      }
+      .customCheckBoxWrapper:last-of-type .customCheckBox {
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        border-left: 0px;
+      }
+      .customCheckBoxInput {
+        display: none;
+      }
+      .customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
+        background-color: #6b8e6b;
+        color: white;
+        box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset,
+          rgba(255, 255, 255, 0.17) 0px -1px 1px 0px,
+          rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+      }
+      .customCheckBoxInput:checked
+        + .customCheckBoxWrapper
+        .customCheckBox
+        .inner {
+        transform: translateY(-2px);
+      }
+      .customCheckBoxInput:checked
+        + .customCheckBoxWrapper
+        .customCheckBox:hover {
+        background-color: #34723f;
+        box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset,
+          rgba(255, 255, 255, 0.17) 0px -1px 1px 0px,
+          rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
+      }
+      .customCheckBoxWrapper .customCheckBox:hover .inner {
+        transform: translateY(-2px);
+      }
+      /* Loader visual para la tabla */
+      .table-loader-overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(233, 230, 225, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 8px;
+        transition: opacity 0.3s ease-in-out;
+      }
+      .table-loader-overlay .spinner-border {
+        width: 3.5rem;
+        height: 3.5rem;
+        color: var(--accent-color) !important;
+      }
+      .table-loader-overlay .loading-text {
+        color: var(--text-color);
+        font-weight: 600;
+        font-family: "Libre Baskerville", serif;
+      }
+      .dark-mode .table-loader-overlay {
+        background-color: rgba(18, 18, 18, 0.9);
+      }
+      .dark-mode .table-loader-overlay .spinner-border {
+        color: var(--dark-accent-color) !important;
+      }
+      .dark-mode .table-loader-overlay .loading-text {
+        color: var(--dark-text-color);
+      }
+    </style>
+  </head>
+  <body class="dark-mode">
     <!-- SVG FILTER PARA EL EFECTO LIQUID GLASS -->
     <svg style="display: none">
       <filter
@@ -495,104 +530,211 @@
 
     <!-- Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid px-4">
-            <a class="navbar-brand ms-3" href="#">
-                <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/logoback.png?raw=true" alt="Logo" width="30" height="28"> ZOO-BDI
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#introCarousel" data-lang="nav-home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#baseDatos" data-lang="nav-database">Database</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#equipo" data-lang="nav-team">Team</a></li>
-                </ul>
-                <div class="customCheckBoxHolder ms-lg-3" style="font-family: 'Libre Baskerville', serif;">
-                    <input type="checkbox" id="toggleLanguageCustom" class="customCheckBoxInput">
-                    <div class="customCheckBoxWrapper">
-                        <label class="customCheckBox" for="toggleLanguageCustom" tabindex="0">
-                            <span class="inner" id="langToggleLabel">ES</span>
-                        </label>
-                    </div>
-                    <input type="checkbox" id="toggleThemeCustom" class="customCheckBoxInput" checked>
-                    <div class="customCheckBoxWrapper">
-                        <label class="customCheckBox" for="toggleThemeCustom" tabindex="0">
-                            <span class="inner" id="themeToggleLabel"><i class="bi bi-moon-stars-fill"></i></span>
-                        </label>
-                    </div>
-                </div>
+      <div class="container-fluid px-4">
+        <a class="navbar-brand ms-3" href="#">
+          <img
+            src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/logoback.png?raw=true"
+            alt="Logo"
+            width="30"
+            height="28"
+          />
+          ZOO-BDI
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#introCarousel" data-lang="nav-home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#baseDatos" data-lang="nav-database"
+                >Database</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#equipo" data-lang="nav-team">Team</a>
+            </li>
+          </ul>
+          <div
+            class="customCheckBoxHolder ms-lg-3"
+            style="font-family: 'Libre Baskerville', serif"
+          >
+            <input
+              type="checkbox"
+              id="toggleLanguageCustom"
+              class="customCheckBoxInput"
+            />
+            <div class="customCheckBoxWrapper">
+              <label
+                class="customCheckBox"
+                for="toggleLanguageCustom"
+                tabindex="0"
+              >
+                <span class="inner" id="langToggleLabel">ES</span>
+              </label>
             </div>
+            <input
+              type="checkbox"
+              id="toggleThemeCustom"
+              class="customCheckBoxInput"
+              checked
+            />
+            <div class="customCheckBoxWrapper">
+              <label
+                class="customCheckBox"
+                for="toggleThemeCustom"
+                tabindex="0"
+              >
+                <span class="inner" id="themeToggleLabel"
+                  ><i class="bi bi-moon-stars-fill"></i
+                ></span>
+              </label>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Slider -->
-    <div id="introCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('img/1.jpg');">
-                <span class="chinese-symbol" style="top: 20px; left: 20px;">和</span><span class="chinese-symbol" style="bottom: 20px; right: 20px;">平</span>
-                <!-- El caption real está oculto pero su contenido será usado por JS -->
-                <div class="carousel-caption">
-                    <h2 data-lang="welcome-title">Welcome to ZOO-BDI</h2>
-                    <p data-lang="welcome-subtitle">Discover the world of nature</p>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('img/2.jpg');">
-                <span class="chinese-symbol" style="top: 50px; left: 50px;">生</span><span class="chinese-symbol" style="bottom: 30px; right: 30px;">命</span>
-                <div class="carousel-caption">
-                    <h2 data-lang="manage-title">Easily manage your animals</h2>
-                    <p data-lang="manage-subtitle">Intuitive and modern administration</p>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('img/3.jpg');">
-                <span class="chinese-symbol" style="top: 40px; right: 40px;">自</span><span class="chinese-symbol" style="bottom: 20px; left: 20px;">然</span>
-                <div class="carousel-caption">
-                    <h2 data-lang="explore-title">Explore the zoo database</h2>
-                    <p data-lang="explore-subtitle">Detailed and updated information</p>
-                </div>
-            </div>
+    <div
+      id="introCarousel"
+      class="carousel slide"
+      data-bs-ride="carousel"
+      data-bs-interval="3000"
+      data-bs-pause="hover"
+    >
+      <div class="carousel-inner">
+        <div
+          class="carousel-item active"
+          style="background-image: url('img/1.jpg')"
+        >
+          <span class="chinese-symbol" style="top: 20px; left: 20px">和</span
+          ><span class="chinese-symbol" style="bottom: 20px; right: 20px"
+            >平</span
+          >
+          <!-- El caption real está oculto pero su contenido será usado por JS -->
+          <div class="carousel-caption">
+            <h2 data-lang="welcome-title">Welcome to ZOO-BDI</h2>
+            <p data-lang="welcome-subtitle">Discover the world of nature</p>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#introCarousel" data-bs-slide="prev" title="Previous"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden" data-lang="carousel-prev">Previous</span></button>
-        <button class="carousel-control-next" type="button" data-bs-target="#introCarousel" data-bs-slide="next" title="Next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden" data-lang="carousel-next">Next</span></button>
+        <div class="carousel-item" style="background-image: url('img/2.jpg')">
+          <span class="chinese-symbol" style="top: 50px; left: 50px">生</span
+          ><span class="chinese-symbol" style="bottom: 30px; right: 30px"
+            >命</span
+          >
+          <div class="carousel-caption">
+            <h2 data-lang="manage-title">Easily manage your animals</h2>
+            <p data-lang="manage-subtitle">
+              Intuitive and modern administration
+            </p>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('img/3.jpg')">
+          <span class="chinese-symbol" style="top: 40px; right: 40px">自</span
+          ><span class="chinese-symbol" style="bottom: 20px; left: 20px"
+            >然</span
+          >
+          <div class="carousel-caption">
+            <h2 data-lang="explore-title">Explore the zoo database</h2>
+            <p data-lang="explore-subtitle">Detailed and updated information</p>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#introCarousel"
+        data-bs-slide="prev"
+        title="Previous"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span
+        ><span class="visually-hidden" data-lang="carousel-prev">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#introCarousel"
+        data-bs-slide="next"
+        title="Next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span
+        ><span class="visually-hidden" data-lang="carousel-next">Next</span>
+      </button>
     </div>
 
     <!-- Contenedor estático para el caption con efecto Liquid Glass -->
     <div class="static-caption-container">
-        <div class="liquidGlass-wrapper">
-            <div class="liquidGlass-effect"></div>
-            <div class="liquidGlass-tint"></div>
-            <div class="liquidGlass-shine"></div>
-            <div class="liquidGlass-text" id="static-caption-content">
-                <!-- El contenido se inyectará aquí con JavaScript -->
-            </div>
+      <div class="liquidGlass-wrapper">
+        <div class="liquidGlass-effect"></div>
+        <div class="liquidGlass-tint"></div>
+        <div class="liquidGlass-shine"></div>
+        <div class="liquidGlass-text" id="static-caption-content">
+          <!-- El contenido se inyectará aquí con JavaScript -->
         </div>
+      </div>
     </div>
 
     <!-- Database Section -->
     <div id="baseDatos" class="container my-5">
-        <h2 class="text-center mb-4" data-lang="database-title">Zoo Database </h2>
-        <div class="row justify-content-center g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <i class="bi bi-plus-circle-dotted fs-1 mb-3 text-primary"></i>
-                        <h5 class="card-title" data-lang="animal-register-title">Animal Registration</h5>
-                        <p class="card-text" data-lang="animal-register-text">Add a new animal to the zoo's database.</p>
-                        <button type="button" class="btn btn-primary w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#modalRegistrarAnimal" data-lang="animal-register-button">Register Animal</button>
-                    </div>
-                </div>
+      <h2 class="text-center mb-4" data-lang="database-title">Zoo Database</h2>
+      <div class="row justify-content-center g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 text-center">
+            <div class="card-body d-flex flex-column">
+              <i class="bi bi-plus-circle-dotted fs-1 mb-3 text-primary"></i>
+              <h5 class="card-title" data-lang="animal-register-title">
+                Animal Registration
+              </h5>
+              <p class="card-text" data-lang="animal-register-text">
+                Add a new animal to the zoo's database.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary w-100 mt-auto"
+                data-bs-toggle="modal"
+                data-bs-target="#modalRegistrarAnimal"
+                data-lang="animal-register-button"
+              >
+                Register Animal
+              </button>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 text-center">
-                    <div class="card-body d-flex flex-column">
-                        <i class="bi bi-arrow-clockwise fs-1 mb-3 text-primary"></i>
-                        <h5 class="card-title" data-lang="animal-query-title">Reload List</h5>
-                        <p class="card-text" data-lang="animal-query-text">Reload the list to see the most recent updates.</p>
-                        <button type="button" class="btn btn-primary w-100 mt-auto" onclick="refrescarTablaAnimales(1)" data-lang="animal-query-button">Reload</button>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 text-center">
+            <div class="card-body d-flex flex-column">
+              <i class="bi bi-arrow-clockwise fs-1 mb-3 text-primary"></i>
+              <h5 class="card-title" data-lang="animal-query-title">
+                Reload List
+              </h5>
+              <p class="card-text" data-lang="animal-query-text">
+                Reload the list to see the most recent updates.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary w-100 mt-auto"
+                onclick="refrescarTablaAnimales(1)"
+                data-lang="animal-query-button"
+              >
+                Reload
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- El resto de tu HTML permanece igual -->
@@ -603,9 +745,22 @@
         <div class="col-md-8">
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" id="buscarAnimal" data-lang-placeholder="search-placeholder" onkeyup="buscarConDebounce()" placeholder="Search by name, keeper or species...">
-            <button class="btn btn-outline-secondary" type="button" onclick="limpiarBusqueda()" data-lang="clear-search-button">
-              <i class="bi bi-x-circle"></i> <span data-lang="clear-button-text">Clear</span>
+            <input
+              type="text"
+              class="form-control"
+              id="buscarAnimal"
+              data-lang-placeholder="search-placeholder"
+              onkeyup="buscarConDebounce()"
+              placeholder="Search by name, keeper or species..."
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              onclick="limpiarBusqueda()"
+              data-lang="clear-search-button"
+            >
+              <i class="bi bi-x-circle"></i>
+              <span data-lang="clear-button-text">Clear</span>
             </button>
           </div>
         </div>
@@ -613,126 +768,218 @@
           <span class="text-muted" id="contadorResultados"></span>
         </div>
       </div>
-      
-      <div class="table-responsive">
-          <!-- LOADER INTEGRADO -->
-          <div id="table-loader-overlay" class="table-loader-overlay d-none">
-              <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
-              </div>
-              <div class="text-center mt-3 loading-text">
-                  <strong data-lang="loading-text-server">Iniciando el servidor...</strong><br>
-                  <span data-lang="loading-text-wait">Esto puede tardar un momento.</span>
-              </div>
-          </div>
-          <!-- FIN LOADER -->
 
-          <table class="table table-striped" id="tablaAnimales">
-            <thead>
-              <tr>
-                <th data-lang="table-id">ID</th>
-                <th data-lang="table-name">Name</th>
-                <th data-lang="table-birthdate">Birth Date</th>
-                <th data-lang="table-keeper">Keeper</th>
-                <th data-lang="table-habitat">Habitat</th>
-                <th data-lang="table-species">Species</th>
-                <th data-lang="table-actions">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Animals will be inserted here by JavaScript -->
-            </tbody>
-          </table>
+      <div class="table-responsive">
+        <!-- LOADER INTEGRADO -->
+        <div id="table-loader-overlay" class="table-loader-overlay d-none">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="text-center mt-3 loading-text">
+            <strong data-lang="loading-text-server"
+              >Iniciando el servidor...</strong
+            ><br />
+            <span data-lang="loading-text-wait"
+              >Esto puede tardar un momento.</span
+            >
+          </div>
+        </div>
+        <!-- FIN LOADER -->
+
+        <table class="table table-striped" id="tablaAnimales">
+          <thead>
+            <tr>
+              <th data-lang="table-id">ID</th>
+              <th data-lang="table-name">Name</th>
+              <th data-lang="table-birthdate">Birth Date</th>
+              <th data-lang="table-keeper">Keeper</th>
+              <th data-lang="table-habitat">Habitat</th>
+              <th data-lang="table-species">Species</th>
+              <th data-lang="table-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Animals will be inserted here by JavaScript -->
+          </tbody>
+        </table>
       </div>
       <div id="paginacionAnimales"></div>
     </div>
 
     <!-- Team Section -->
     <section id="equipo" class="py-5">
-        <div class="container text-center">
-            <h2 class="mb-4" data-lang="team-title">Our Team</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4 col-lg-3">
-                    <div class="card">
-                        <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/img/anderson.jpg?raw=true" class="card-img-top" alt="Team member photo">
-                        <div class="card-body">
-                            <h5 class="card-title" data-lang="member-1-name">Anderson González</h5>
-                            <p class="card-text" data-lang="role-product-owner">Product Owner & Development Team</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="https://www.linkedin.com/in/anderson-gonzaleza21/" class="btn btn-outline-primary mx-1" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://github.com/Albonire" class="btn btn-outline-dark mx-1" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
+      <div class="container text-center">
+        <h2 class="mb-4" data-lang="team-title">Our Team</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/img/anderson.jpg?raw=true"
+                class="card-img-top"
+                alt="Team member photo"
+              />
+              <div class="card-body">
+                <h5 class="card-title" data-lang="member-1-name">
+                  Anderson González
+                </h5>
+                <p class="card-text" data-lang="role-product-owner">
+                  Product Owner & Development Team
+                </p>
+                <div class="d-flex justify-content-center">
+                  <a
+                    href="https://www.linkedin.com/in/anderson-gonzaleza21/"
+                    class="btn btn-outline-primary mx-1"
+                    target="_blank"
+                    rel="noopener"
+                    ><i class="bi bi-linkedin"></i
+                  ></a>
+                  <a
+                    href="https://github.com/Albonire"
+                    class="btn btn-outline-dark mx-1"
+                    target="_blank"
+                    rel="noopener"
+                    ><i class="bi bi-github"></i
+                  ></a>
                 </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="card">
-                        <img src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/img/mateo.jpg?raw=true" class="card-img-top" alt="Team member photo">
-                        <div class="card-body">
-                            <h5 class="card-title" data-lang="member-2-name">Mateo Orduz</h5>
-                            <p class="card-text" data-lang="role-scrum-master">Scrum Master</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="https://github.com/mateo739" class="btn btn-outline-dark mx-1" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-md-4 col-lg-3">
+            <div class="card">
+              <img
+                src="https://github.com/Albonire/BDI-GB-ZOO/blob/main/frontend/img/mateo.jpg?raw=true"
+                class="card-img-top"
+                alt="Team member photo"
+              />
+              <div class="card-body">
+                <h5 class="card-title" data-lang="member-2-name">
+                  Mateo Orduz
+                </h5>
+                <p class="card-text" data-lang="role-scrum-master">
+                  Scrum Master
+                </p>
+                <div class="d-flex justify-content-center">
+                  <a
+                    href="https://github.com/mateo739"
+                    class="btn btn-outline-dark mx-1"
+                    target="_blank"
+                    rel="noopener"
+                    ><i class="bi bi-github"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Modals -->
     <!-- Register Animal Modal -->
-    <div class="modal fade" id="modalRegistrarAnimal" tabindex="-1" aria-labelledby="modalRegistrarAnimalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalRegistrarAnimal"
+      tabindex="-1"
+      aria-labelledby="modalRegistrarAnimalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalRegistrarAnimalLabel" data-lang="modal-register-title">Register Animal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5
+              class="modal-title"
+              id="modalRegistrarAnimalLabel"
+              data-lang="modal-register-title"
+            >
+              Register Animal
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="formRegistrarAnimal">
-              <p class="form-text text-danger mb-2" id="requiredFieldsNote" data-lang="required-fields-note">
+              <p
+                class="form-text text-danger mb-2"
+                id="requiredFieldsNote"
+                data-lang="required-fields-note"
+              >
                 <span aria-hidden="true">*</span> Campo obligatorio
               </p>
               <div id="mensajeRegistrarAnimal" class="mb-3"></div>
               <div class="mb-3">
                 <label for="nombreAnimal" class="form-label">
-                  <span data-lang="form-name">Name</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
+                  <span data-lang="form-name">Name</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
                 </label>
-                <input type="text" class="form-control" id="nombreAnimal" required maxlength="100">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombreAnimal"
+                  required
+                  maxlength="100"
+                />
               </div>
               <div class="mb-3">
                 <label for="fechaNacimientoAnimal" class="form-label">
-                  <span data-lang="form-birthdate">Birth Date</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
+                  <span data-lang="form-birthdate">Birth Date</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
                 </label>
-                <input type="date" class="form-control" id="fechaNacimientoAnimal" required>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fechaNacimientoAnimal"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="cuidadorAnimal" class="form-label">
-                  <span data-lang="form-keeper">Keeper</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
+                  <span data-lang="form-keeper">Keeper</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
                 </label>
                 <select class="form-select" id="cuidadorAnimal" required>
-                  <option value="" data-lang="select-keeper">Select a keeper...</option>
+                  <option value="" data-lang="select-keeper">
+                    Select a keeper...
+                  </option>
                 </select>
               </div>
               <div class="mb-3">
                 <label for="habitatAnimal" class="form-label">
-                  <span data-lang="form-habitat">Habitat</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
+                  <span data-lang="form-habitat">Habitat</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
                 </label>
                 <select class="form-select" id="habitatAnimal" required>
-                  <option value="" data-lang="select-habitat">Select a habitat...</option>
+                  <option value="" data-lang="select-habitat">
+                    Select a habitat...
+                  </option>
                 </select>
               </div>
               <div class="mb-3">
                 <label for="especieAnimal" class="form-label">
-                  <span data-lang="form-species">Species</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
+                  <span data-lang="form-species">Species</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
                 </label>
                 <select class="form-select" id="especieAnimal" required>
-                  <option value="" data-lang="select-species">Select a species...</option>
+                  <option value="" data-lang="select-species">
+                    Select a species...
+                  </option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary w-100" data-lang="form-register-btn">Register</button>
+              <button
+                type="submit"
+                class="btn btn-primary w-100"
+                data-lang="form-register-btn"
+              >
+                Register
+              </button>
             </form>
           </div>
         </div>
@@ -740,57 +987,123 @@
     </div>
 
     <!-- Update Animal Modal -->
-    <div class="modal fade" id="modalActualizarAnimal" tabindex="-1" aria-labelledby="modalActualizarAnimalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalActualizarAnimal"
+      tabindex="-1"
+      aria-labelledby="modalActualizarAnimalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalActualizarAnimalLabel" data-lang="modal-update-title">Update Animal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5
+              class="modal-title"
+              id="modalActualizarAnimalLabel"
+              data-lang="modal-update-title"
+            >
+              Update Animal
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="formActualizarAnimal">
-                <p class="form-text text-danger mb-2" id="requiredFieldsNoteUpdate" data-lang="required-fields-note">
-                  <span aria-hidden="true">*</span> Campo obligatorio
-                </p>
-                <input type="hidden" id="idActualizarAnimal">
-                <div id="mensajeActualizarAnimal" class="mb-3"></div>
-                <div class="mb-3">
-                  <label for="nombreActualizarAnimal" class="form-label">
-                    <span data-lang="form-name">Name</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
-                  </label>
-                  <input type="text" class="form-control" id="nombreActualizarAnimal" required maxlength="100">
-                </div>
-                <div class="mb-3">
-                  <label for="fechaActualizarNacimientoAnimal" class="form-label">
-                    <span data-lang="form-birthdate">Birth Date</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
-                  </label>
-                  <input type="date" class="form-control" id="fechaActualizarNacimientoAnimal" required>
-                </div>
-                <div class="mb-3">
-                  <label for="cuidadorActualizarAnimal" class="form-label">
-                    <span data-lang="form-keeper">Keeper</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
-                  </label>
-                  <select class="form-select" id="cuidadorActualizarAnimal" required>
-                    <option value="" data-lang="select-keeper">Select a keeper...</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="habitatActualizarAnimal" class="form-label">
-                    <span data-lang="form-habitat">Habitat</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
-                  </label>
-                  <select class="form-select" id="habitatActualizarAnimal" required>
-                    <option value="" data-lang="select-habitat">Select a habitat...</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="especieActualizarAnimal" class="form-label">
-                    <span data-lang="form-species">Species</span> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">obligatorio</span>
-                  </label>
-                  <select class="form-select" id="especieActualizarAnimal" required>
-                    <option value="" data-lang="select-species">Select a species...</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary w-100" data-lang="form-update-btn">Update</button>
+              <p
+                class="form-text text-danger mb-2"
+                id="requiredFieldsNoteUpdate"
+                data-lang="required-fields-note"
+              >
+                <span aria-hidden="true">*</span> Campo obligatorio
+              </p>
+              <input type="hidden" id="idActualizarAnimal" />
+              <div id="mensajeActualizarAnimal" class="mb-3"></div>
+              <div class="mb-3">
+                <label for="nombreActualizarAnimal" class="form-label">
+                  <span data-lang="form-name">Name</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombreActualizarAnimal"
+                  required
+                  maxlength="100"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="fechaActualizarNacimientoAnimal" class="form-label">
+                  <span data-lang="form-birthdate">Birth Date</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
+                </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fechaActualizarNacimientoAnimal"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cuidadorActualizarAnimal" class="form-label">
+                  <span data-lang="form-keeper">Keeper</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
+                </label>
+                <select
+                  class="form-select"
+                  id="cuidadorActualizarAnimal"
+                  required
+                >
+                  <option value="" data-lang="select-keeper">
+                    Select a keeper...
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="habitatActualizarAnimal" class="form-label">
+                  <span data-lang="form-habitat">Habitat</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
+                </label>
+                <select
+                  class="form-select"
+                  id="habitatActualizarAnimal"
+                  required
+                >
+                  <option value="" data-lang="select-habitat">
+                    Select a habitat...
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="especieActualizarAnimal" class="form-label">
+                  <span data-lang="form-species">Species</span>
+                  <span class="text-danger" aria-hidden="true">*</span
+                  ><span class="visually-hidden">obligatorio</span>
+                </label>
+                <select
+                  class="form-select"
+                  id="especieActualizarAnimal"
+                  required
+                >
+                  <option value="" data-lang="select-species">
+                    Select a species...
+                  </option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary w-100"
+                data-lang="form-update-btn"
+              >
+                Update
+              </button>
             </form>
           </div>
         </div>
@@ -798,427 +1111,732 @@
     </div>
 
     <!-- Delete Animal Modal -->
-    <div class="modal fade" id="modalEliminarAnimal" tabindex="-1" aria-labelledby="modalEliminarAnimalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalEliminarAnimal"
+      tabindex="-1"
+      aria-labelledby="modalEliminarAnimalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalEliminarAnimalLabel" data-lang="modal-delete-title">Delete Animal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5
+              class="modal-title"
+              id="modalEliminarAnimalLabel"
+              data-lang="modal-delete-title"
+            >
+              Delete Animal
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <div id="mensajeEliminarAnimal" class="mb-3"></div>
             <p id="confirmarEliminarTexto"></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-lang="form-cancel-btn">Cancel</button>
-            <button type="button" class="btn btn-danger" id="btnConfirmarEliminar" data-lang="form-delete-btn">Delete</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              data-lang="form-cancel-btn"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="btnConfirmarEliminar"
+              data-lang="form-delete-btn"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
-    // --- Translations Dictionary ---
-    const translations = {
+      // --- Translations Dictionary ---
+      const translations = {
         en: {
-            "nav-home": "Home", "nav-database": "Database", "nav-team": "Team", "language": "Language", "theme": "Theme", "welcome-title": "Welcome to ZOO-BDI", "welcome-subtitle": "Discover the world of nature", "manage-title": "Easily manage your animals", "manage-subtitle": "Intuitive and modern administration", "explore-title": "Explore the zoo database", "explore-subtitle": "Detailed and updated information", "database-title": "Zoo Database", "animal-register-title": "Animal Registration", "animal-register-text": "Add a new animal to the zoo's database.", "animal-register-button": "Register Animal", "animal-query-title": "Reload List", "animal-query-text": "Reload the list to see the most recent updates.", "animal-query-button": "Reload", "animal-list-title": "Animal List", "search-placeholder": "Search by name, keeper or species...", "clear-search-button": "Clear", "clear-button-text": "Clear", "table-id": "ID", "table-name": "Name", "table-birthdate": "Birth Date", "table-keeper": "Keeper", "table-habitat": "Habitat", "table-species": "Species", "table-actions": "Actions", "team-title": "Our Team", "member-1-name": "Anderson González", "role-product-owner": "Product Owner & Development Team", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "carousel-prev": "Previous", "carousel-next": "Next", "modal-register-title": "Register Animal", "form-name": "Name", "form-birthdate": "Birth Date", "form-keeper": "Keeper", "form-habitat": "Habitat", "form-species": "Species", "select-keeper": "Select a keeper...", "select-habitat": "Select a habitat...", "select-species": "Select a species...", "form-register-btn": "Register", "modal-update-title": "Update Animal", "form-update-btn": "Update", "modal-delete-title": "Delete Animal", "form-cancel-btn": "Cancel", "form-delete-btn": "Delete", "delete-confirm-text": "Are you sure you want to delete", "results-found": "result(s) found", "total-animals": "Total animals", "counter-total": "Total animals", "counter-results": "result(s) found", "required-fields-note": "* Required field", "loading-text-server": "Waking up the server...", "loading-text-wait": "This may take a moment."
+          "nav-home": "Home",
+          "nav-database": "Database",
+          "nav-team": "Team",
+          language: "Language",
+          theme: "Theme",
+          "welcome-title": "Welcome to ZOO-BDI",
+          "welcome-subtitle": "Discover the world of nature",
+          "manage-title": "Easily manage your animals",
+          "manage-subtitle": "Intuitive and modern administration",
+          "explore-title": "Explore the zoo database",
+          "explore-subtitle": "Detailed and updated information",
+          "database-title": "Zoo Database",
+          "animal-register-title": "Animal Registration",
+          "animal-register-text": "Add a new animal to the zoo's database.",
+          "animal-register-button": "Register Animal",
+          "animal-query-title": "Reload List",
+          "animal-query-text":
+            "Reload the list to see the most recent updates.",
+          "animal-query-button": "Reload",
+          "animal-list-title": "Animal List",
+          "search-placeholder": "Search by name, keeper or species...",
+          "clear-search-button": "Clear",
+          "clear-button-text": "Clear",
+          "table-id": "ID",
+          "table-name": "Name",
+          "table-birthdate": "Birth Date",
+          "table-keeper": "Keeper",
+          "table-habitat": "Habitat",
+          "table-species": "Species",
+          "table-actions": "Actions",
+          "team-title": "Our Team",
+          "member-1-name": "Anderson González",
+          "role-product-owner": "Product Owner & Development Team",
+          "member-2-name": "Mateo Orduz",
+          "role-scrum-master": "Scrum Master",
+          "carousel-prev": "Previous",
+          "carousel-next": "Next",
+          "modal-register-title": "Register Animal",
+          "form-name": "Name",
+          "form-birthdate": "Birth Date",
+          "form-keeper": "Keeper",
+          "form-habitat": "Habitat",
+          "form-species": "Species",
+          "select-keeper": "Select a keeper...",
+          "select-habitat": "Select a habitat...",
+          "select-species": "Select a species...",
+          "form-register-btn": "Register",
+          "modal-update-title": "Update Animal",
+          "form-update-btn": "Update",
+          "modal-delete-title": "Delete Animal",
+          "form-cancel-btn": "Cancel",
+          "form-delete-btn": "Delete",
+          "delete-confirm-text": "Are you sure you want to delete",
+          "results-found": "result(s) found",
+          "total-animals": "Total animals",
+          "counter-total": "Total animals",
+          "counter-results": "result(s) found",
+          "required-fields-note": "* Required field",
+          "loading-text-server": "Waking up the server...",
+          "loading-text-wait": "This may take a moment.",
         },
         es: {
-            "nav-home": "Inicio", "nav-database": "Base de Datos", "nav-team": "Equipo", "language": "Idioma", "theme": "Tema", "welcome-title": "Bienvenidos a ZOO-BDI", "welcome-subtitle": "Descubre el mundo de la naturaleza", "manage-title": "Gestiona tus animales fácilmente", "manage-subtitle": "Administración intuitiva y moderna", "explore-title": "Explora la base de datos del zoológico", "explore-subtitle": "Información detallada y actualizada", "database-title": "Base de Datos del Zoológico", "animal-register-title": "Registro de Animales", "animal-register-text": "Añade un nuevo animal a la base de datos.", "animal-register-button": "Registrar Animal", "animal-query-title": "Recargar Lista", "animal-query-text": "Recarga la lista para ver los datos más recientes.", "animal-query-button": "Recargar", "animal-list-title": "Lista de Animales", "search-placeholder": "Buscar por nombre, cuidador o especie...", "clear-search-button": "Limpiar", "clear-button-text": "Limpiar", "table-id": "ID", "table-name": "Nombre", "table-birthdate": "Fecha de Nacimiento", "table-keeper": "Cuidador", "table-habitat": "Hábitat", "table-species": "Especie", "table-actions": "Acciones", "team-title": "Nuestro Equipo", "member-1-name": "Anderson González", "role-product-owner": "Product Owner & Equipo de Desarrollo", "member-2-name": "Mateo Orduz", "role-scrum-master": "Scrum Master", "carousel-prev": "Anterior", "carousel-next": "Siguiente", "modal-register-title": "Registrar Animal", "form-name": "Nombre", "form-birthdate": "Fecha de Nacimiento", "form-keeper": "Cuidador", "form-habitat": "Hábitat", "form-species": "Especie", "select-keeper": "Seleccionar cuidador...", "select-habitat": "Seleccionar hábitat...", "select-species": "Seleccionar especie...", "form-register-btn": "Registrar", "modal-update-title": "Actualizar Animal", "form-update-btn": "Actualizar", "modal-delete-title": "Eliminar Animal", "form-cancel-btn": "Cancelar", "form-delete-btn": "Eliminar", "delete-confirm-text": "¿Estás seguro de que quieres eliminar a", "results-found": "resultado(s) encontrado(s)", "total-animals": "Animales en total", "counter-total": "Animales en total", "counter-results": "resultado(s) encontrado(s)", "required-fields-note": "* Campo obligatorio", "loading-text-server": "Iniciando el servidor...", "loading-text-wait": "Esto puede tardar un momento."
-        }
-    };
+          "nav-home": "Inicio",
+          "nav-database": "Base de Datos",
+          "nav-team": "Equipo",
+          language: "Idioma",
+          theme: "Tema",
+          "welcome-title": "Bienvenidos a ZOO-BDI",
+          "welcome-subtitle": "Descubre el mundo de la naturaleza",
+          "manage-title": "Gestiona tus animales fácilmente",
+          "manage-subtitle": "Administración intuitiva y moderna",
+          "explore-title": "Explora la base de datos del zoológico",
+          "explore-subtitle": "Información detallada y actualizada",
+          "database-title": "Base de Datos del Zoológico",
+          "animal-register-title": "Registro de Animales",
+          "animal-register-text": "Añade un nuevo animal a la base de datos.",
+          "animal-register-button": "Registrar Animal",
+          "animal-query-title": "Recargar Lista",
+          "animal-query-text":
+            "Recarga la lista para ver los datos más recientes.",
+          "animal-query-button": "Recargar",
+          "animal-list-title": "Lista de Animales",
+          "search-placeholder": "Buscar por nombre, cuidador o especie...",
+          "clear-search-button": "Limpiar",
+          "clear-button-text": "Limpiar",
+          "table-id": "ID",
+          "table-name": "Nombre",
+          "table-birthdate": "Fecha de Nacimiento",
+          "table-keeper": "Cuidador",
+          "table-habitat": "Hábitat",
+          "table-species": "Especie",
+          "table-actions": "Acciones",
+          "team-title": "Nuestro Equipo",
+          "member-1-name": "Anderson González",
+          "role-product-owner": "Product Owner & Equipo de Desarrollo",
+          "member-2-name": "Mateo Orduz",
+          "role-scrum-master": "Scrum Master",
+          "carousel-prev": "Anterior",
+          "carousel-next": "Siguiente",
+          "modal-register-title": "Registrar Animal",
+          "form-name": "Nombre",
+          "form-birthdate": "Fecha de Nacimiento",
+          "form-keeper": "Cuidador",
+          "form-habitat": "Hábitat",
+          "form-species": "Especie",
+          "select-keeper": "Seleccionar cuidador...",
+          "select-habitat": "Seleccionar hábitat...",
+          "select-species": "Seleccionar especie...",
+          "form-register-btn": "Registrar",
+          "modal-update-title": "Actualizar Animal",
+          "form-update-btn": "Actualizar",
+          "modal-delete-title": "Eliminar Animal",
+          "form-cancel-btn": "Cancelar",
+          "form-delete-btn": "Eliminar",
+          "delete-confirm-text": "¿Estás seguro de que quieres eliminar a",
+          "results-found": "resultado(s) encontrado(s)",
+          "total-animals": "Animales en total",
+          "counter-total": "Animales en total",
+          "counter-results": "resultado(s) encontrado(s)",
+          "required-fields-note": "* Campo obligatorio",
+          "loading-text-server": "Iniciando el servidor...",
+          "loading-text-wait": "Esto puede tardar un momento.",
+        },
+      };
 
-    window.currentLang = 'en';
-    const API_BASE_URL = 'https://bdi-gb-zoo-backend.onrender.com';
+      window.currentLang = "en";
+      // const API_BASE_URL = 'https://bdi-gb-zoo-backend.onrender.com';
+      const API_BASE_URL = "http://localhost:8000";
 
-    function updateLanguage() {
-        console.log('updateLanguage:', window.currentLang);
-        document.querySelectorAll('[data-lang]').forEach(el => {
-            const key = el.getAttribute('data-lang');
-            if (translations[window.currentLang][key]) {
-                el.textContent = translations[window.currentLang][key];
-            }
+      function updateLanguage() {
+        console.log("updateLanguage:", window.currentLang);
+        document.querySelectorAll("[data-lang]").forEach((el) => {
+          const key = el.getAttribute("data-lang");
+          if (translations[window.currentLang][key]) {
+            el.textContent = translations[window.currentLang][key];
+          }
         });
-        document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-lang-placeholder');
-            if (translations[window.currentLang][key]) {
-                el.placeholder = translations[window.currentLang][key];
-            }
+        document.querySelectorAll("[data-lang-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-lang-placeholder");
+          if (translations[window.currentLang][key]) {
+            el.placeholder = translations[window.currentLang][key];
+          }
         });
-    }
+      }
 
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        const isDarkMode = document.body.classList.contains('dark-mode');
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        const themeIcon = document.getElementById('themeIcon');
-        themeIcon.classList.toggle('bi-sun-fill', !isDarkMode);
-        themeIcon.classList.toggle('bi-moon-stars-fill', isDarkMode);
-    }
-    
-    function showMessage(elementId, message, type = 'success') {
+      function toggleTheme() {
+        document.body.classList.toggle("dark-mode");
+        const isDarkMode = document.body.classList.contains("dark-mode");
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+        const themeIcon = document.getElementById("themeIcon");
+        themeIcon.classList.toggle("bi-sun-fill", !isDarkMode);
+        themeIcon.classList.toggle("bi-moon-stars-fill", isDarkMode);
+      }
+
+      function showMessage(elementId, message, type = "success") {
         const messageEl = document.getElementById(elementId);
         messageEl.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
-        setTimeout(() => { messageEl.innerHTML = ''; }, 3000);
-    }
+        setTimeout(() => {
+          messageEl.innerHTML = "";
+        }, 3000);
+      }
 
-    // --- API & Data Handling ---
-    let todosLosAnimales = [], animalesFiltrados = [];
-    let cuidadoresData = [], especiesData = [], habitatsData = [];
-    let paginaActual = 1, pageSize = 10, totalPaginas = 1;
-    let timeoutBusqueda = null;
+      // --- API & Data Handling ---
+      let todosLosAnimales = [],
+        animalesFiltrados = [];
+      let cuidadoresData = [],
+        especiesData = [],
+        habitatsData = [];
+      let paginaActual = 1,
+        pageSize = 10,
+        totalPaginas = 1;
+      let timeoutBusqueda = null;
 
-    async function fetchFromAPI(endpoint) {
+      async function fetchFromAPI(endpoint) {
         try {
-            const response = await fetch(`${API_BASE_URL}${endpoint}`);
-            if (!response.ok) throw new Error(`Error fetching ${endpoint}`);
-            const data = await response.json();
-            return data.items || [];
+          const response = await fetch(`${API_BASE_URL}${endpoint}`);
+          if (!response.ok) throw new Error(`Error fetching ${endpoint}`);
+          const data = await response.json();
+          return data.items || [];
         } catch (error) {
-            console.error(error);
-            return [];
+          console.error(error);
+          return [];
         }
-    }
+      }
 
-    async function cargarDatosReferencia() {
+      async function cargarDatosReferencia() {
         [cuidadoresData, especiesData, habitatsData] = await Promise.all([
-            fetchFromAPI('/cuidadores'),
-            fetchFromAPI('/especies'),
-            fetchFromAPI('/habitats')
+          fetchFromAPI("/cuidadores"),
+          fetchFromAPI("/especies"),
+          fetchFromAPI("/habitats"),
         ]);
-    }
+      }
 
-    function populateSelect(selectId, data, placeholderKey) {
+      function populateSelect(selectId, data, placeholderKey) {
         const select = document.getElementById(selectId);
-        select.innerHTML = `<option value="">${translations[window.currentLang][placeholderKey]}</option>`;
-        data.forEach(item => {
-            select.innerHTML += `<option value="${item.id}">${item.nombre}</option>`;
+        select.innerHTML = `<option value="">${
+          translations[window.currentLang][placeholderKey]
+        }</option>`;
+        data.forEach((item) => {
+          select.innerHTML += `<option value="${item.id}">${item.nombre}</option>`;
         });
-    }
-    
-    function refrescarTablaAnimales(page = 1) {
-        const loader = document.getElementById('table-loader-overlay');
-        const tablaBody = document.getElementById('tablaAnimales').querySelector('tbody');
-        loader.classList.remove('d-none');
-        tablaBody.innerHTML = '';
-        document.getElementById('paginacionAnimales').innerHTML = '';
-        document.getElementById('contadorResultados').textContent = '';
-        fetchFromAPI('/animales?page=1&page_size=1000').then(data => {
+      }
+
+      function refrescarTablaAnimales(page = 1) {
+        const loader = document.getElementById("table-loader-overlay");
+        const tablaBody = document
+          .getElementById("tablaAnimales")
+          .querySelector("tbody");
+        loader.classList.remove("d-none");
+        tablaBody.innerHTML = "";
+        document.getElementById("paginacionAnimales").innerHTML = "";
+        document.getElementById("contadorResultados").textContent = "";
+        fetchFromAPI("/animales?page=1&page_size=1000")
+          .then((data) => {
             todosLosAnimales = data;
             paginaActual = page;
             filtrarAnimales();
-        }).catch(error => {
-            loader.classList.add('d-none');
+          })
+          .catch((error) => {
+            loader.classList.add("d-none");
             tablaBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger">Error al cargar los datos. Por favor, intenta de nuevo.</td></tr>`;
-        });
-    }
+          });
+      }
 
-    function filtrarAnimales() {
-        const busqueda = document.getElementById('buscarAnimal').value.toLowerCase().trim();
-        if (busqueda === '') {
-            animalesFiltrados = [...todosLosAnimales];
+      function filtrarAnimales() {
+        const busqueda = document
+          .getElementById("buscarAnimal")
+          .value.toLowerCase()
+          .trim();
+        if (busqueda === "") {
+          animalesFiltrados = [...todosLosAnimales];
         } else {
-            animalesFiltrados = todosLosAnimales.filter(animal => {
-                const nombre = (animal.nombre || '').toLowerCase();
-                const cuidador = (obtenerNombrePorId(animal.cuidador_id, cuidadoresData) || '').toLowerCase();
-                const especie = (obtenerNombrePorId(animal.especie_id, especiesData) || '').toLowerCase();
-                return nombre.includes(busqueda) || cuidador.includes(busqueda) || especie.includes(busqueda);
-            });
+          animalesFiltrados = todosLosAnimales.filter((animal) => {
+            const nombre = (animal.nombre || "").toLowerCase();
+            const cuidador = (
+              obtenerNombrePorId(animal.cuidador_id, cuidadoresData) || ""
+            ).toLowerCase();
+            const especie = (
+              obtenerNombrePorId(animal.especie_id, especiesData) || ""
+            ).toLowerCase();
+            return (
+              nombre.includes(busqueda) ||
+              cuidador.includes(busqueda) ||
+              especie.includes(busqueda)
+            );
+          });
         }
         totalPaginas = Math.ceil(animalesFiltrados.length / pageSize);
         if (paginaActual > totalPaginas) paginaActual = totalPaginas || 1;
-        
+
         const inicio = (paginaActual - 1) * pageSize;
         const fin = inicio + pageSize;
         mostrarAnimalesEnTabla(animalesFiltrados.slice(inicio, fin));
-        actualizarContadorResultados(animalesFiltrados.length, busqueda !== '');
+        actualizarContadorResultados(animalesFiltrados.length, busqueda !== "");
         renderPaginacion();
-        const loader = document.getElementById('table-loader-overlay');
-        loader.classList.add('d-none');
-    }
-    
-    function buscarConDebounce() {
+        const loader = document.getElementById("table-loader-overlay");
+        loader.classList.add("d-none");
+      }
+
+      function buscarConDebounce() {
         clearTimeout(timeoutBusqueda);
         timeoutBusqueda = setTimeout(() => {
-            paginaActual = 1; // Reset to first page on new search
-            filtrarAnimales();
+          paginaActual = 1; // Reset to first page on new search
+          filtrarAnimales();
         }, 300);
-    }
+      }
 
-    function limpiarBusqueda() {
-        document.getElementById('buscarAnimal').value = '';
+      function limpiarBusqueda() {
+        document.getElementById("buscarAnimal").value = "";
         paginaActual = 1;
         filtrarAnimales();
-    }
-    
-    // --- UI Rendering ---
-    function obtenerNombrePorId(id, data) {
-        if (!id || !data) return 'N/A';
-        const item = data.find(i => i.id === id);
-        return item ? item.nombre : `ID: ${id}`;
-    }
+      }
 
-    function mostrarAnimalesEnTabla(animales) {
-        const tablaBody = document.getElementById('tablaAnimales').querySelector('tbody');
-        tablaBody.innerHTML = '';
+      // --- UI Rendering ---
+      function obtenerNombrePorId(id, data) {
+        if (!id || !data) return "N/A";
+        const item = data.find((i) => i.id === id);
+        return item ? item.nombre : `ID: ${id}`;
+      }
+
+      function mostrarAnimalesEnTabla(animales) {
+        const tablaBody = document
+          .getElementById("tablaAnimales")
+          .querySelector("tbody");
+        tablaBody.innerHTML = "";
         if (animales.length === 0) {
-            tablaBody.innerHTML = `<tr><td colspan="7" class="text-center">No animals found.</td></tr>`;
-            return;
+          tablaBody.innerHTML = `<tr><td colspan="7" class="text-center">No animals found.</td></tr>`;
+          return;
         }
-        animales.forEach(animal => {
-            const fila = `
+        animales.forEach((animal) => {
+          const fila = `
                 <tr>
                     <td>${animal.id}</td>
                     <td>${animal.nombre}</td>
-                    <td>${animal.fecha_nacimiento ? animal.fecha_nacimiento.split('T')[0] : 'N/A'}</td>
-                    <td>${obtenerNombrePorId(animal.cuidador_id, cuidadoresData)}</td>
-                    <td>${obtenerNombrePorId(animal.habitat_id, habitatsData)}</td>
-                    <td>${obtenerNombrePorId(animal.especie_id, especiesData)}</td>
+                    <td>${
+                      animal.fecha_nacimiento
+                        ? animal.fecha_nacimiento.split("T")[0]
+                        : "N/A"
+                    }</td>
+                    <td>${obtenerNombrePorId(
+                      animal.cuidador_id,
+                      cuidadoresData
+                    )}</td>
+                    <td>${obtenerNombrePorId(
+                      animal.habitat_id,
+                      habitatsData
+                    )}</td>
+                    <td>${obtenerNombrePorId(
+                      animal.especie_id,
+                      especiesData
+                    )}</td>
                     <td>
                         <button class="btn btn-sm btn-outline-primary btn-action btn-edit" title="Edit"
-                            data-id="${animal.id}" data-nombre="${animal.nombre}" data-fecha_nacimiento="${animal.fecha_nacimiento.split('T')[0]}"
-                            data-cuidador_id="${animal.cuidador_id}" data-habitat_id="${animal.habitat_id}" data-especie_id="${animal.especie_id}">
+                            data-id="${animal.id}" data-nombre="${
+            animal.nombre
+          }" data-fecha_nacimiento="${animal.fecha_nacimiento.split("T")[0]}"
+                            data-cuidador_id="${
+                              animal.cuidador_id
+                            }" data-habitat_id="${
+            animal.habitat_id
+          }" data-especie_id="${animal.especie_id}">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button class="btn btn-sm btn-outline-danger btn-action btn-delete" title="Delete"
-                            data-id="${animal.id}" data-nombre="${animal.nombre}">
+                            data-id="${animal.id}" data-nombre="${
+            animal.nombre
+          }">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
                 </tr>`;
-            tablaBody.innerHTML += fila;
+          tablaBody.innerHTML += fila;
         });
-    }
+      }
 
-    function actualizarContadorResultados(cantidad, isSearch) {
-        const contador = document.getElementById('contadorResultados');
+      function actualizarContadorResultados(cantidad, isSearch) {
+        const contador = document.getElementById("contadorResultados");
         if (isSearch) {
-            contador.textContent = `${cantidad} ${translations[window.currentLang]['results-found']}`;
+          contador.textContent = `${cantidad} ${
+            translations[window.currentLang]["results-found"]
+          }`;
         } else {
-            contador.textContent = `${cantidad} ${translations[window.currentLang]['total-animals']}`;
+          contador.textContent = `${cantidad} ${
+            translations[window.currentLang]["total-animals"]
+          }`;
         }
-    }
+      }
 
-    function renderPaginacion() {
-        const paginacionDiv = document.getElementById('paginacionAnimales');
+      function renderPaginacion() {
+        const paginacionDiv = document.getElementById("paginacionAnimales");
         if (totalPaginas <= 1) {
-            paginacionDiv.innerHTML = '';
-            return;
+          paginacionDiv.innerHTML = "";
+          return;
         }
         let paginacionHTML = `<nav class="mt-4"><ul class="pagination justify-content-center">`;
-        paginacionHTML += `<li class="page-item ${paginaActual === 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual - 1})">«</a></li>`;
+        paginacionHTML += `<li class="page-item ${
+          paginaActual === 1 ? "disabled" : ""
+        }"><a class="page-link" href="#" onclick="cambiarPagina(${
+          paginaActual - 1
+        })">«</a></li>`;
         for (let i = 1; i <= totalPaginas; i++) {
-            paginacionHTML += `<li class="page-item ${paginaActual === i ? 'active' : ''}"><a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a></li>`;
+          paginacionHTML += `<li class="page-item ${
+            paginaActual === i ? "active" : ""
+          }"><a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a></li>`;
         }
-        paginacionHTML += `<li class="page-item ${paginaActual === totalPaginas ? 'disabled' : ''}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual + 1})">»</a></li>`;
+        paginacionHTML += `<li class="page-item ${
+          paginaActual === totalPaginas ? "disabled" : ""
+        }"><a class="page-link" href="#" onclick="cambiarPagina(${
+          paginaActual + 1
+        })">»</a></li>`;
         paginacionHTML += `</ul></nav>`;
         paginacionDiv.innerHTML = paginacionHTML;
-    }
+      }
 
-    function cambiarPagina(nuevaPagina) {
+      function cambiarPagina(nuevaPagina) {
         paginaActual = nuevaPagina;
         filtrarAnimales();
-    }
+      }
 
-    // --- Event Listeners & Initializers ---
-    document.addEventListener('DOMContentLoaded', async function() {
-
+      // --- Event Listeners & Initializers ---
+      document.addEventListener("DOMContentLoaded", async function () {
         // --- NUEVO CÓDIGO PARA EL CAPTION ESTÁTICO ---
-        const carouselElement = document.getElementById('introCarousel');
-        const staticCaptionContainer = document.getElementById('static-caption-content');
-        
+        const carouselElement = document.getElementById("introCarousel");
+        const staticCaptionContainer = document.getElementById(
+          "static-caption-content"
+        );
+
         // Función para actualizar el contenido del caption estático
         const updateCaption = (activeItem) => {
-            const caption = activeItem.querySelector('.carousel-caption');
-            if (caption) {
-                staticCaptionContainer.innerHTML = caption.innerHTML;
-            }
+          const caption = activeItem.querySelector(".carousel-caption");
+          if (caption) {
+            staticCaptionContainer.innerHTML = caption.innerHTML;
+          }
         };
 
         // Inicializar el caption con el contenido del primer slide
-        const initialItem = document.querySelector('#introCarousel .carousel-item.active');
+        const initialItem = document.querySelector(
+          "#introCarousel .carousel-item.active"
+        );
         if (initialItem) {
-            updateCaption(initialItem);
+          updateCaption(initialItem);
         }
-        
+
         // Añadir listener para cuando el carrusel termina de cambiar de slide
-        carouselElement.addEventListener('slid.bs.carousel', event => {
-            // event.relatedTarget es el nuevo item activo
-            updateCaption(event.relatedTarget);
+        carouselElement.addEventListener("slid.bs.carousel", (event) => {
+          // event.relatedTarget es el nuevo item activo
+          updateCaption(event.relatedTarget);
         });
         // --- FIN DEL NUEVO CÓDIGO ---
 
-
         // Theme initialization
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
+        if (localStorage.getItem("theme") === "dark") {
+          document.body.classList.add("dark-mode");
         } else {
-            document.body.classList.remove('dark-mode');
+          document.body.classList.remove("dark-mode");
         }
 
         // Idioma por defecto: inglés
-        const langToggle = document.getElementById('toggleLanguageCustom');
-        const langLabel = document.getElementById('langToggleLabel');
+        const langToggle = document.getElementById("toggleLanguageCustom");
+        const langLabel = document.getElementById("langToggleLabel");
         langToggle.checked = false;
-        window.currentLang = 'en';
-        langLabel.textContent = 'EN';
+        window.currentLang = "en";
+        langLabel.textContent = "EN";
         updateLanguage();
 
         // Tema por defecto: oscuro
-        const themeToggle = document.getElementById('toggleThemeCustom');
-        const themeLabel = document.getElementById('themeToggleLabel');
+        const themeToggle = document.getElementById("toggleThemeCustom");
+        const themeLabel = document.getElementById("themeToggleLabel");
         themeToggle.checked = false;
         if (!themeToggle.checked) {
-            document.body.classList.add('dark-mode');
-            themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
+          document.body.classList.add("dark-mode");
+          themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
         } else {
-            document.body.classList.remove('dark-mode');
-            themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
+          document.body.classList.remove("dark-mode");
+          themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
         }
 
         await cargarDatosReferencia();
         refrescarTablaAnimales();
 
         // Event Listeners
-        langToggle.addEventListener('change', function() {
-            if (this.checked) {
-                window.currentLang = 'es';
-                langLabel.textContent = 'ES';
-            } else {
-                window.currentLang = 'en';
-                langLabel.textContent = 'EN';
-            }
-            console.log('toggle:', window.currentLang);
-            updateLanguage();
+        langToggle.addEventListener("change", function () {
+          if (this.checked) {
+            window.currentLang = "es";
+            langLabel.textContent = "ES";
+          } else {
+            window.currentLang = "en";
+            langLabel.textContent = "EN";
+          }
+          console.log("toggle:", window.currentLang);
+          updateLanguage();
         });
-        themeToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-                themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
-            } else {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-                themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
-            }
+        themeToggle.addEventListener("change", function () {
+          if (this.checked) {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+            themeLabel.innerHTML = '<i class="bi bi-sun-fill"></i>';
+          } else {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+            themeLabel.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
+          }
         });
 
         // Modals opening
-        document.getElementById('modalRegistrarAnimal').addEventListener('show.bs.modal', () => {
-            populateSelect('cuidadorAnimal', cuidadoresData, 'select-keeper');
-            populateSelect('habitatAnimal', habitatsData, 'select-habitat');
-            populateSelect('especieAnimal', especiesData, 'select-species');
-        });
+        document
+          .getElementById("modalRegistrarAnimal")
+          .addEventListener("show.bs.modal", () => {
+            populateSelect("cuidadorAnimal", cuidadoresData, "select-keeper");
+            populateSelect("habitatAnimal", habitatsData, "select-habitat");
+            populateSelect("especieAnimal", especiesData, "select-species");
+          });
 
         // Forms submission
-        document.getElementById('formRegistrarAnimal').addEventListener('submit', handleRegister);
-        document.getElementById('formActualizarAnimal').addEventListener('submit', handleUpdate);
-        document.getElementById('btnConfirmarEliminar').addEventListener('click', handleDelete);
-        
+        document
+          .getElementById("formRegistrarAnimal")
+          .addEventListener("submit", handleRegister);
+        document
+          .getElementById("formActualizarAnimal")
+          .addEventListener("submit", handleUpdate);
+        document
+          .getElementById("btnConfirmarEliminar")
+          .addEventListener("click", handleDelete);
+
         // Table action buttons (Event Delegation)
-        document.getElementById('tablaAnimales').querySelector('tbody').addEventListener('click', e => {
-            const btn = e.target.closest('.btn-action');
+        document
+          .getElementById("tablaAnimales")
+          .querySelector("tbody")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest(".btn-action");
             if (!btn) return;
-            
+
             const { id, nombre } = btn.dataset;
-            if (btn.classList.contains('btn-edit')) {
-                abrirModalActualizar(btn.dataset);
-            } else if (btn.classList.contains('btn-delete')) {
-                abrirModalEliminar(id, nombre);
+            if (btn.classList.contains("btn-edit")) {
+              abrirModalActualizar(btn.dataset);
+            } else if (btn.classList.contains("btn-delete")) {
+              abrirModalEliminar(id, nombre);
             }
-        });
-    });
+          });
+      });
 
-    // --- Form Handlers ---
-    async function handleRegister(e) {
+      // --- Form Handlers ---
+      async function handleRegister(e) {
         e.preventDefault();
         const data = {
-            nombre: document.getElementById('nombreAnimal').value,
-            fecha_nacimiento: document.getElementById('fechaNacimientoAnimal').value,
-            cuidador_id: parseInt(document.getElementById('cuidadorAnimal').value) || null,
-            habitat_id: parseInt(document.getElementById('habitatAnimal').value) || null,
-            especie_id: parseInt(document.getElementById('especieAnimal').value) || null
+          nombre: document.getElementById("nombreAnimal").value,
+          fecha_nacimiento: document.getElementById("fechaNacimientoAnimal")
+            .value,
+          cuidador_id:
+            parseInt(document.getElementById("cuidadorAnimal").value) || null,
+          habitat_id:
+            parseInt(document.getElementById("habitatAnimal").value) || null,
+          especie_id:
+            parseInt(document.getElementById("especieAnimal").value) || null,
         };
         try {
-            const response = await fetch(`${API_BASE_URL}/animales`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            if (!response.ok) throw new Error('Registration failed');
-            showMessage('mensajeRegistrarAnimal', 'Animal registered successfully!', 'success');
-            refrescarTablaAnimales();
-            e.target.reset();
-            setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('modalRegistrarAnimal')).hide(), 1500);
-        } catch(err) {
-            showMessage('mensajeRegistrarAnimal', 'Error registering animal.', 'danger');
-        }
-    }
-
-    function abrirModalActualizar(dataset) {
-        document.getElementById('idActualizarAnimal').value = dataset.id;
-        document.getElementById('nombreActualizarAnimal').value = dataset.nombre;
-        document.getElementById('fechaActualizarNacimientoAnimal').value = dataset.fecha_nacimiento;
-        
-        populateSelect('cuidadorActualizarAnimal', cuidadoresData, 'select-keeper');
-        populateSelect('habitatActualizarAnimal', habitatsData, 'select-habitat');
-        populateSelect('especieActualizarAnimal', especiesData, 'select-species');
-
-        document.getElementById('cuidadorActualizarAnimal').value = dataset.cuidador_id;
-        document.getElementById('habitatActualizarAnimal').value = dataset.habitat_id;
-        document.getElementById('especieActualizarAnimal').value = dataset.especie_id;
-        
-        bootstrap.Modal.getOrCreateInstance(document.getElementById('modalActualizarAnimal')).show();
-    }
-
-    async function handleUpdate(e) {
-        e.preventDefault();
-        const id = document.getElementById('idActualizarAnimal').value;
-        const data = {
-            nombre: document.getElementById('nombreActualizarAnimal').value,
-            fecha_nacimiento: document.getElementById('fechaActualizarNacimientoAnimal').value,
-            cuidador_id: parseInt(document.getElementById('cuidadorActualizarAnimal').value) || null,
-            habitat_id: parseInt(document.getElementById('habitatActualizarAnimal').value) || null,
-            especie_id: parseInt(document.getElementById('especieActualizarAnimal').value) || null
-        };
-        try {
-            const response = await fetch(`${API_BASE_URL}/animales/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-            if (!response.ok) throw new Error('Update failed');
-            showMessage('mensajeActualizarAnimal', 'Animal updated successfully!', 'success');
-            refrescarTablaAnimales();
-            setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('modalActualizarAnimal')).hide(), 1500);
+          const response = await fetch(`${API_BASE_URL}/animales`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (!response.ok) throw new Error("Registration failed");
+          showMessage(
+            "mensajeRegistrarAnimal",
+            "Animal registered successfully!",
+            "success"
+          );
+          refrescarTablaAnimales();
+          e.target.reset();
+          setTimeout(
+            () =>
+              bootstrap.Modal.getInstance(
+                document.getElementById("modalRegistrarAnimal")
+              ).hide(),
+            1500
+          );
         } catch (err) {
-            showMessage('mensajeActualizarAnimal', 'Error updating animal.', 'danger');
+          showMessage(
+            "mensajeRegistrarAnimal",
+            "Error registering animal.",
+            "danger"
+          );
         }
-    }
-    
-    function abrirModalEliminar(id, nombre) {
-        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('modalEliminarAnimal'));
-        document.getElementById('confirmarEliminarTexto').textContent = `${translations[window.currentLang]['delete-confirm-text']} ${nombre}?`;
-        document.getElementById('btnConfirmarEliminar').dataset.id = id;
-        modal.show();
-    }
+      }
 
-    async function handleDelete(e) {
+      function abrirModalActualizar(dataset) {
+        document.getElementById("idActualizarAnimal").value = dataset.id;
+        document.getElementById("nombreActualizarAnimal").value =
+          dataset.nombre;
+        document.getElementById("fechaActualizarNacimientoAnimal").value =
+          dataset.fecha_nacimiento;
+
+        populateSelect(
+          "cuidadorActualizarAnimal",
+          cuidadoresData,
+          "select-keeper"
+        );
+        populateSelect(
+          "habitatActualizarAnimal",
+          habitatsData,
+          "select-habitat"
+        );
+        populateSelect(
+          "especieActualizarAnimal",
+          especiesData,
+          "select-species"
+        );
+
+        document.getElementById("cuidadorActualizarAnimal").value =
+          dataset.cuidador_id;
+        document.getElementById("habitatActualizarAnimal").value =
+          dataset.habitat_id;
+        document.getElementById("especieActualizarAnimal").value =
+          dataset.especie_id;
+
+        bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("modalActualizarAnimal")
+        ).show();
+      }
+
+      async function handleUpdate(e) {
+        e.preventDefault();
+        const id = document.getElementById("idActualizarAnimal").value;
+        const data = {
+          nombre: document.getElementById("nombreActualizarAnimal").value,
+          fecha_nacimiento: document.getElementById(
+            "fechaActualizarNacimientoAnimal"
+          ).value,
+          cuidador_id:
+            parseInt(
+              document.getElementById("cuidadorActualizarAnimal").value
+            ) || null,
+          habitat_id:
+            parseInt(
+              document.getElementById("habitatActualizarAnimal").value
+            ) || null,
+          especie_id:
+            parseInt(
+              document.getElementById("especieActualizarAnimal").value
+            ) || null,
+        };
+        try {
+          const response = await fetch(`${API_BASE_URL}/animales/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (!response.ok) throw new Error("Update failed");
+          showMessage(
+            "mensajeActualizarAnimal",
+            "Animal updated successfully!",
+            "success"
+          );
+          refrescarTablaAnimales();
+          setTimeout(
+            () =>
+              bootstrap.Modal.getInstance(
+                document.getElementById("modalActualizarAnimal")
+              ).hide(),
+            1500
+          );
+        } catch (err) {
+          showMessage(
+            "mensajeActualizarAnimal",
+            "Error updating animal.",
+            "danger"
+          );
+        }
+      }
+
+      function abrirModalEliminar(id, nombre) {
+        const modal = bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("modalEliminarAnimal")
+        );
+        document.getElementById("confirmarEliminarTexto").textContent = `${
+          translations[window.currentLang]["delete-confirm-text"]
+        } ${nombre}?`;
+        document.getElementById("btnConfirmarEliminar").dataset.id = id;
+        modal.show();
+      }
+
+      async function handleDelete(e) {
         const id = e.target.dataset.id;
         try {
-            const response = await fetch(`${API_BASE_URL}/animales/${id}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Deletion failed');
-            showMessage('mensajeEliminarAnimal', 'Animal deleted successfully!', 'success');
-            refrescarTablaAnimales();
-            setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('modalEliminarAnimal')).hide(), 1500);
+          const response = await fetch(`${API_BASE_URL}/animales/${id}`, {
+            method: "DELETE",
+          });
+          if (!response.ok) throw new Error("Deletion failed");
+          showMessage(
+            "mensajeEliminarAnimal",
+            "Animal deleted successfully!",
+            "success"
+          );
+          refrescarTablaAnimales();
+          setTimeout(
+            () =>
+              bootstrap.Modal.getInstance(
+                document.getElementById("modalEliminarAnimal")
+              ).hide(),
+            1500
+          );
         } catch (err) {
-            showMessage('mensajeEliminarAnimal', 'Error deleting animal.', 'danger');
+          showMessage(
+            "mensajeEliminarAnimal",
+            "Error deleting animal.",
+            "danger"
+          );
         }
-    }
+      }
     </script>
-</body>
+  </body>
 </html>

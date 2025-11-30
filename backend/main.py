@@ -18,7 +18,7 @@ app = FastAPI(title="Zoo API", version="1.0.0")
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://bdi-gb-zoo.vercel.app", "http://localhost:3000", "http://localhost:5000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

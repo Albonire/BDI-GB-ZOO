@@ -4,7 +4,7 @@ from src.app.database.database import Base
 
 class ClimaModel(Base):
     __tablename__ = "clima"
-    __table_args__ = {"schema": "animals"}
+    # __table_args__ = {"schema": "animals"}  # Comentado para SQLite
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(50), nullable=False)

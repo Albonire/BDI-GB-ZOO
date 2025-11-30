@@ -1,4 +1,5 @@
-const API_URL = 'https://bdi-gb-zoo-backend.onrender.com';
+// const API_URL = 'https://bdi-gb-zoo-backend.onrender.com';
+const API_URL = 'http://localhost:8000';
 
 // Cargar datos iniciales
 async function loadInitialData() {

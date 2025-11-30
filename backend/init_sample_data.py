@@ -193,7 +193,7 @@ def insert_sample_data():
             print("Insertando familias...")
             for nombre_cientifico, nombre_comun in familias_data:
                 conn.execute(text("""
-                    INSERT INTO animals.familia (nombrecientifico, nombrecomun) 
+                    INSERT INTO familia (nombrecientifico, nombrecomun) 
                     VALUES (:nombre_cientifico, :nombre_comun)
                 """), {"nombre_cientifico": nombre_cientifico, "nombre_comun": nombre_comun})
             
@@ -201,7 +201,7 @@ def insert_sample_data():
             print("Insertando estados de conservación...")
             for codigo, nombre, descripcion in estados_data:
                 conn.execute(text("""
-                    INSERT INTO animals.estado_conservacion (id, nombre, descripcion) 
+                    INSERT INTO estado_conservacion (id, nombre, descripcion) 
                     VALUES (:codigo, :nombre, :descripcion)
                 """), {"codigo": codigo, "nombre": nombre, "descripcion": descripcion})
             
@@ -209,7 +209,7 @@ def insert_sample_data():
             print("Insertando ubicaciones...")
             for nombre in ubicaciones_data:
                 conn.execute(text("""
-                    INSERT INTO animals.ubicacion (nombre) 
+                    INSERT INTO ubicacion (nombre) 
                     VALUES (:nombre)
                 """), {"nombre": nombre})
             
@@ -217,7 +217,7 @@ def insert_sample_data():
             print("Insertando climas...")
             for nombre in climas_data:
                 conn.execute(text("""
-                    INSERT INTO animals.clima (nombre) 
+                    INSERT INTO clima (nombre) 
                     VALUES (:nombre)
                 """), {"nombre": nombre})
             
@@ -225,7 +225,7 @@ def insert_sample_data():
             print("Insertando especialidades...")
             for nombre in especialidades_data:
                 conn.execute(text("""
-                    INSERT INTO animals.especialidad (nombre) 
+                    INSERT INTO especialidad (nombre) 
                     VALUES (:nombre)
                 """), {"nombre": nombre})
             
@@ -234,7 +234,7 @@ def insert_sample_data():
             for i, nombre in enumerate(cuidadores_data):
                 especialidad_id = (i % len(especialidades_data)) + 1
                 conn.execute(text("""
-                    INSERT INTO animals.cuidador (nombre, especialidad_id) 
+                    INSERT INTO cuidador (nombre, especialidad_id) 
                     VALUES (:nombre, :especialidad_id)
                 """), {"nombre": nombre, "especialidad_id": especialidad_id})
             
@@ -244,7 +244,7 @@ def insert_sample_data():
                 # Asignar estado de conservación aleatorio entre 4-7 (en peligro a preocupación menor)
                 estado_id = 5  # Vulnerable por defecto
                 conn.execute(text("""
-                    INSERT INTO animals.especie (nombre, descripcion, estado_conservacion_id) 
+                    INSERT INTO especie (nombre, descripcion, estado_conservacion_id) 
                     VALUES (:nombre, :descripcion, :estado_id)
                 """), {"nombre": nombre, "descripcion": descripcion, "estado_id": estado_id})
             
@@ -255,7 +255,7 @@ def insert_sample_data():
                 ubicacion_id = 1  # Zona Tropical por defecto
                 clima_id = 1      # Tropical por defecto
                 conn.execute(text("""
-                    INSERT INTO animals.habitat (nombre, descripcion, ubicacion_id, clima_id) 
+                    INSERT INTO habitat (nombre, descripcion, ubicacion_id, clima_id) 
                     VALUES (:nombre, :descripcion, :ubicacion_id, :clima_id)
                 """), {"nombre": nombre, "descripcion": descripcion, "ubicacion_id": ubicacion_id, "clima_id": clima_id})
             
@@ -263,7 +263,7 @@ def insert_sample_data():
             print("Insertando animales...")
             for nombre, fecha_nacimiento, cuidador_id, habitat_id, especie_id in animales_data:
                 conn.execute(text("""
-                    INSERT INTO animals.animales (nombre, fecha_nacimiento, cuidador_id, habitat_id, especie_id) 
+                    INSERT INTO animales (nombre, fecha_nacimiento, cuidador_id, habitat_id, especie_id) 
                     VALUES (:nombre, :fecha_nacimiento, :cuidador_id, :habitat_id, :especie_id)
                 """), {
                     "nombre": nombre, 
