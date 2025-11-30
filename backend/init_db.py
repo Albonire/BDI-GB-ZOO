@@ -29,19 +29,25 @@ def init_database():
         with engine.connect() as connection:
             print("✅ Conectado a la base de datos")
             
-            # SQLite no soporta esquemas, solo creamos las tablas directamente
+            # Crear el esquema 'animals' si no existe
+            connection.execute(text("CREATE SCHEMA IF NOT EXISTS animals"))
+            connection.commit()
+            print("✅ Esquema 'animals' creado/verificado")
+            
+            # Crear todas las tablas
             Base.metadata.create_all(bind=engine)
             print("✅ Todas las tablas creadas exitosamente")
             
             # Verificar que las tablas se crearon
             result = connection.execute(text("""
-                SELECT name FROM sqlite_master 
-                WHERE type='table'
-                ORDER BY name
+                SELECT table_name 
+                FROM information_schema.tables 
+                WHERE table_schema = 'animals'
+                ORDER BY table_name
             """))
             
             tables = [row[0] for row in result]
-            print(f"📋 Tablas creadas: {', '.join(tables)}")
+            print(f"📋 Tablas creadas en el esquema 'animals': {', '.join(tables)}")
             
     except Exception as e:
         print(f"❌ Error al inicializar la base de datos: {e}")

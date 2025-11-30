@@ -13,8 +13,8 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# Set the default schema for the models (PostgreSQL only)
-# Base.metadata.schema = "animals"  # Comentado para SQLite
+# Set the default schema for the models
+Base.metadata.schema = "animals"
 
 # Dependency para obtener la sesión de la base de datos
 def get_db():

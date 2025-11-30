@@ -4,14 +4,14 @@ from src.app.database.database import Base
 
 class AnimalesModel(Base):
     __tablename__ = "animales"
-    # __table_args__ = {"schema": "animals"}  # Comentado para SQLite
+    __table_args__ = {"schema": "animals"}
 
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(50), nullable=False)
     fecha_nacimiento = Column(Date, nullable=True)
-    cuidador_id = Column(Integer, ForeignKey('cuidador.id'))
-    habitat_id = Column(Integer, ForeignKey('habitat.id'))
-    especie_id = Column(Integer, ForeignKey('especie.id'))
+    cuidador_id = Column(Integer, ForeignKey('animals.cuidador.id'))
+    habitat_id = Column(Integer, ForeignKey('animals.habitat.id'))
+    especie_id = Column(Integer, ForeignKey('animals.especie.id'))
     
     # Definir las relaciones
     cuidador = relationship("CuidadorModel", back_populates="animales")
